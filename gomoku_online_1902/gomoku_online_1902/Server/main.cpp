@@ -1,6 +1,4 @@
-#include <iostream>
-using namespace std;
-
+#include "Server.h"
 int main(void) {
-		
+	Server::start();
 }
