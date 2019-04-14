@@ -39,26 +39,30 @@
             // boardPicture
             // 
             this.boardPicture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(216)))));
-            this.boardPicture.Location = new System.Drawing.Point(12, 12);
+            this.boardPicture.Location = new System.Drawing.Point(14, 15);
+            this.boardPicture.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.boardPicture.Name = "boardPicture";
-            this.boardPicture.Size = new System.Drawing.Size(500, 500);
+            this.boardPicture.Size = new System.Drawing.Size(571, 625);
             this.boardPicture.TabIndex = 0;
             this.boardPicture.TabStop = false;
+            this.boardPicture.Click += new System.EventHandler(this.boardPicture_Click);
             this.boardPicture.Paint += new System.Windows.Forms.PaintEventHandler(this.boardPicture_Paint);
             this.boardPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.boardPicture_MouseDown);
             // 
             // roomTextBox
             // 
-            this.roomTextBox.Location = new System.Drawing.Point(528, 22);
+            this.roomTextBox.Location = new System.Drawing.Point(603, 28);
+            this.roomTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.roomTextBox.Name = "roomTextBox";
-            this.roomTextBox.Size = new System.Drawing.Size(183, 21);
+            this.roomTextBox.Size = new System.Drawing.Size(209, 25);
             this.roomTextBox.TabIndex = 1;
             // 
             // enterButton
             // 
-            this.enterButton.Location = new System.Drawing.Point(738, 12);
+            this.enterButton.Location = new System.Drawing.Point(843, 15);
+            this.enterButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.enterButton.Name = "enterButton";
-            this.enterButton.Size = new System.Drawing.Size(100, 40);
+            this.enterButton.Size = new System.Drawing.Size(114, 50);
             this.enterButton.TabIndex = 2;
             this.enterButton.Text = "접속하기";
             this.enterButton.UseVisualStyleBackColor = true;
@@ -66,9 +70,10 @@
             // 
             // playButton
             // 
-            this.playButton.Location = new System.Drawing.Point(639, 71);
+            this.playButton.Location = new System.Drawing.Point(730, 89);
+            this.playButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(100, 40);
+            this.playButton.Size = new System.Drawing.Size(114, 50);
             this.playButton.TabIndex = 3;
             this.playButton.Text = "게임시작";
             this.playButton.UseVisualStyleBackColor = true;
@@ -76,23 +81,24 @@
             // 
             // status
             // 
-            this.status.Location = new System.Drawing.Point(556, 125);
+            this.status.Location = new System.Drawing.Point(635, 156);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(272, 15);
+            this.status.Size = new System.Drawing.Size(311, 19);
             this.status.TabIndex = 4;
             this.status.Text = "방을 입력하여 접속해주세요.";
             this.status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MultiPlayForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 541);
+            this.ClientSize = new System.Drawing.Size(987, 676);
             this.Controls.Add(this.status);
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.enterButton);
             this.Controls.Add(this.roomTextBox);
             this.Controls.Add(this.boardPicture);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MultiPlayForm";
             this.Text = "MultiPlayForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MultiPlayForm_FormClosed);

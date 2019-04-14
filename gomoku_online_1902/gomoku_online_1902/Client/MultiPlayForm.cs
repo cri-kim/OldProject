@@ -33,25 +33,25 @@ namespace Client
 
         private bool judge(Horse Player) // 승리 판정 함수
         {
-            for (int i = 0; i < edgeCount - 4; i++) // 가로
+            for (int i = 0; i < edgeCount - 5; i++) // 가로
                 for (int j = 0; j < edgeCount; j++)
                     if (board[i, j] == Player && board[i + 1, j] == Player && board[i + 2, j] == Player &&
-                        board[i + 3, j] == Player && board[i + 4, j] == Player)
+                        board[i + 3, j] == Player && board[i + 4, j] == Player && board[i + 5, j] == Player)
                         return true;
             for (int i = 0; i < edgeCount; i++) // 세로
-                for (int j = 4; j < edgeCount; j++)
+                for (int j = 5; j < edgeCount; j++)
                     if (board[i, j] == Player && board[i, j - 1] == Player && board[i, j - 2] == Player &&
-                        board[i, j - 3] == Player && board[i, j - 4] == Player)
+                        board[i, j - 3] == Player && board[i, j - 4] == Player && board[i, j - 5] == Player)
                         return true;
-            for (int i = 0; i < edgeCount - 4; i++) // Y = X 직선
-                for (int j = 0; j < edgeCount - 4; j++)
+            for (int i = 0; i < edgeCount - 5; i++) // Y = X 직선
+                for (int j = 0; j < edgeCount - 5; j++)
                     if (board[i, j] == Player && board[i + 1, j + 1] == Player && board[i + 2, j + 2] == Player &&
-                        board[i + 3, j + 3] == Player && board[i + 4, j + 4] == Player)
+                        board[i + 3, j + 3] == Player && board[i + 4, j + 4] == Player && board[i + 5, j + 5] == Player)
                         return true;
             for (int i = 4; i < edgeCount; i++) // Y = -X 직선
                 for (int j = 0; j < edgeCount - 4; j++)
                     if (board[i, j] == Player && board[i - 1, j + 1] == Player && board[i - 2, j + 2] == Player &&
-                        board[i - 3, j + 3] == Player && board[i - 4, j + 4] == Player)
+                        board[i - 3, j + 3] == Player && board[i - 4, j + 4] == Player && board[i - 5, j + 5] == Player)
                         return true;
             return false;
         }
@@ -280,6 +280,11 @@ namespace Client
             {
                 tcpClient.Close();
             }
+        }
+
+        private void boardPicture_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

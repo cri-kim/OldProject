@@ -23,25 +23,25 @@ namespace Client
 
         private bool judge() // 승리 판정 함수
         {
-            for (int i = 0; i < edgeCount - 4; i++) // 가로
+            for (int i = 0; i < edgeCount - 5; i++) // 가로
                 for (int j = 0; j < edgeCount; j++)
                     if (board[i, j] == nowPlayer && board[i + 1, j] == nowPlayer && board[i + 2, j] == nowPlayer &&
-                        board[i + 3, j] == nowPlayer && board[i + 4, j] == nowPlayer)
+                        board[i + 3, j] == nowPlayer && board[i + 4, j] == nowPlayer && board[i + 5, j] == nowPlayer)
                         return true;
             for (int i = 0; i < edgeCount; i++) // 세로
-                for (int j = 4; j < edgeCount; j++)
+                for (int j = 5; j < edgeCount; j++)
                     if (board[i, j] == nowPlayer && board[i, j - 1] == nowPlayer && board[i, j - 2] == nowPlayer &&
-                        board[i, j - 3] == nowPlayer && board[i, j - 4] == nowPlayer)
+                        board[i, j - 3] == nowPlayer && board[i, j - 4] == nowPlayer && board[i, j - 5] == nowPlayer)
                         return true;
-            for (int i = 0; i < edgeCount - 4; i++) // Y = X 직선
-                for (int j = 0; j < edgeCount - 4; j++)
+            for (int i = 0; i < edgeCount - 5; i++) // Y = X 직선
+                for (int j = 0; j < edgeCount - 5; j++)
                     if (board[i, j] == nowPlayer && board[i + 1, j + 1] == nowPlayer && board[i + 2, j + 2] == nowPlayer &&
-                        board[i + 3, j + 3] == nowPlayer && board[i + 4, j + 4] == nowPlayer)
+                        board[i + 3, j + 3] == nowPlayer && board[i + 4, j + 4] == nowPlayer && board[i + 5, j + 5] == nowPlayer)
                         return true;
-            for (int i = 4; i < edgeCount; i++) // Y = -X 직선
-                for (int j = 0; j < edgeCount - 4; j++)
+            for (int i = 5; i < edgeCount; i++) // Y = -X 직선
+                for (int j = 0; j < edgeCount - 5; j++)
                     if (board[i, j] == nowPlayer && board[i - 1, j + 1] == nowPlayer && board[i - 2, j + 2] == nowPlayer &&
-                        board[i - 3, j + 3] == nowPlayer && board[i - 4, j + 4] == nowPlayer)
+                        board[i - 3, j + 3] == nowPlayer && board[i - 4, j + 4] == nowPlayer && board[i - 5, j + 5] == nowPlayer)
                         return true;
             return false;
         }
