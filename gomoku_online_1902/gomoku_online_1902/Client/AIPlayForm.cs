@@ -2296,11 +2296,6 @@ namespace Client
 
         }
 
-        private void boardPicture_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
 
         /*------------- 현재 두려는 수의 가치를 판단하여 책정하는 부분 -------------*/
@@ -2944,13 +2939,23 @@ namespace Client
                                 if (alpha >= beta) find = 1;
 
                             }
+
                         }
+
                         if (find == 1) break;
+
                     }
+
                     if (find == 1) break;
+
                 }
+
                 return min;
+
             }
+
         }
+
     }
+
 }

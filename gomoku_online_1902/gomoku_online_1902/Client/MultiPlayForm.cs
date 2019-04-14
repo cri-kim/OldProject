@@ -281,10 +281,5 @@ namespace Client
                 tcpClient.Close();
             }
         }
-
-        private void MultiPlayForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
