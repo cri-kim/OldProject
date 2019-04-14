@@ -315,648 +315,544 @@ namespace Client
 
 
         /*------------- 5목이 만들어질 수 있는 모든 20가지 경우의 수  -------------*/
+        /*------------- 6목이 만들어질 수 있는 모든 25가지 경우의 수  -------------*/
 
-
-
-        public bool make5mok1(int x, int y)
-
+        /*●
+          ○
+          ○
+          ○
+          ○
+          ○*/
+        public bool make6mok1(int x, int y)
         {
-
             try
-
             {
-
-                for (int i = y; i < y + 5; i++)
-
+                for (int i = y; i < y + 6; i++)
                 {
-
                     if (board[x, i] != board[x, y]) return false;
-
                 }
-
             }
-
             catch (IndexOutOfRangeException)
-
             {
-
                 return false;
-
             }
-
             return true;
-
         }
 
-
-
-        public bool make5mok2(int x, int y)
-
+       /*         ○
+                ○
+              ○
+            ○
+          ○
+        ●*/
+        public bool make6mok2(int x, int y)
         {
-
             try
-
             {
-
-                for (int i = x, j = y; i < x + 5; i++, j--)
-
+                for (int i = x, j = y; i < x + 6; i++, j--)
                 {
-
                     if (board[i, j] != board[x, y]) return false;
-
                 }
-
             }
-
             catch (IndexOutOfRangeException)
-
             {
-
                 return false;
-
             }
-
             return true;
-
         }
 
-
-
-        public bool make5mok3(int x, int y)
-
+        /*●○○○○○*/
+        public bool make6mok3(int x, int y)
         {
-
             try
-
             {
-
-                for (int i = x; i < x + 5; i++)
-
+                for (int i = x; i < x + 6; i++)
                 {
-
                     if (board[i, y] != board[x, y]) return false;
-
                 }
-
             }
-
             catch (IndexOutOfRangeException)
-
             {
-
-                return false;
-
+               return false;
             }
-
             return true;
-
         }
 
-
-
-        public bool make5mok4(int x, int y)
-
+        /*●
+         *  ○
+         *    ○
+         *      ○
+         *        ○
+         *          ○*/
+        public bool make6mok4(int x, int y)
         {
-
             try
-
             {
-
-                for (int i = x, j = y; i < x + 5; i++, j++)
-
+                for (int i = x, j = y; i < x + 6; i++, j++)
                 {
-
                     if (board[i, j] != board[x, y]) return false;
-
                 }
-
             }
-
             catch (IndexOutOfRangeException)
-
             {
-
                 return false;
-
             }
-
             return true;
-
         }
 
 
-
-        public bool make5mok5(int x, int y)
-
+        /*○
+         *○
+         *○
+         *○
+         *○
+         *●*/
+        public bool make6mok5(int x, int y)
         {
-
             try
-
             {
-
-                for (int i = y; i > y - 5; i--)
-
+                for (int i = y; i > y - 6; i--)
                 {
-
                     if (board[x, i] != board[x, y]) return false;
-
                 }
-
             }
-
             catch (IndexOutOfRangeException)
-
             {
-
                 return false;
-
             }
-
             return true;
-
         }
 
 
-
-        public bool make5mok6(int x, int y)
-
+        /*           ●
+                   ○
+                 ○
+               ○
+             ○
+           ○*/
+        public bool make6mok6(int x, int y)
         {
-
             try
-
             {
-
-                for (int i = x, j = y; i > x - 5; i--, j++)
-
+                for (int i = x, j = y; i > x - 6; i--, j++)
                 {
-
                     if (board[i, j] != board[x, y]) return false;
-
                 }
-
             }
-
             catch (IndexOutOfRangeException)
-
             {
-
                 return false;
-
             }
-
             return true;
-
         }
 
 
-
-        public bool make5mok7(int x, int y)
-
-        {
-
-            try
-
-            {
-
-                for (int i = x; i > x - 5; i--)
-
+        /*○○○○○●
+       */
+        public bool make6mok7(int x, int y)
                 {
-
-                    if (board[i, y] != board[x, y]) return false;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return false;
-
-            }
-
-            return true;
-
-        }
+                  try
+                   {
+                      for (int i = x; i > x - 6; i--)
+                       {
+                           if (board[i, y] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
 
 
+        /*○
+         *  ○
+         *    ○
+         *      ○
+         *        ○
+         *          ●*/
+        public bool make6mok8(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = x, j = y; i > x - 6; i--, j--)
+                       {
+                           if (board[i, j] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
 
-        public bool make5mok8(int x, int y)
 
+        /*○
+         *●
+         *○
+         *○
+         *○
+         *○*/
+        public bool make6mok9(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = y - 1; i < y + 5; i++)
+                       {
+                           if (board[x, i] != board[x, y]) return false;
+                       }
+                   }
+
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
+
+
+        /*           ○
+                   ○
+                 ○
+               ○
+             ●
+           ○*/
+        public bool make6mok10(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = x - 1, j = y + 1; i < x + 5; i++, j--)
+                       {
+                           if (board[i, j] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
+
+
+        /*  ○●○○○○*/
+        public bool make6mok11(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = x - 1; i < x + 5; i++)
+                       {
+                           if (board[i, y] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
+
+
+        /*○
+         *  ●
+         *    ○
+         *      ○
+         *        ○
+         *          ○*/
+        public bool make6mok12(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = x - 1, j = y - 1; i < x + 5; i++, j++)
+                       {
+                           if (board[i, j] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
+
+
+        /* ○
+         * ○
+         * ○
+         * ○
+         * ●
+         * ○
+         */
+        public bool make6mok13(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = y + 1; i > y - 5; i--)
+                       {
+                           if (board[x, i] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                  {
+                       return false;
+                   }
+                   return true;
+               }
+
+        /*           ○
+                   ●
+                 ○
+               ○
+             ○
+           ○*/
+        public bool make6mok14(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = x + 1, j = y - 1; i > x - 5; i--, j++)
+                       {
+                           if (board[i, j] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
+
+
+        /*  ○○○○●○*/
+        public bool make6mok15(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = x + 1; i > x - 5; i--)
+                       {
+                           if (board[i, y] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
+
+
+        /*○
+         *  ○
+         *    ○
+         *      ○
+         *        ●
+         *          ○*/
+        public bool make6mok16(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = x + 1, j = y + 1; i > x - 5; i--, j--)
+                       {
+                           if (board[i, j] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
+
+
+        /* ○
+         * ○
+         * ○
+         * ●
+         * ○
+         * ○
+         */
+        public bool make6mok17(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = y - 2; i < y + 4; i++)
+                       {
+                           if (board[x, i] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
+
+
+        /*  ○○○●○○*/
+        public bool make6mok18(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = x - 2; i < x + 3; i++)
+                       {
+                           if (board[i, y] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
+
+
+        /* ○
+         * ○
+         * ●
+         * ○
+         * ○
+         * ○
+         */
+        public bool make6mok19(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = y + 2; i > y - 3; i--)
+                       {
+                           if (board[x, i] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
+
+
+        /*  ○○●○○○*/
+        public bool make6mok20(int x, int y)
+               {
+                   try
+                   {
+                       for (int i = x + 2; i > x - 3; i--)
+                       {
+                           if (board[i, y] != board[x, y]) return false;
+                       }
+                   }
+                   catch (IndexOutOfRangeException)
+                   {
+                       return false;
+                   }
+                   return true;
+               }
+
+        /* ○
+        *  ○
+        *  ○
+        *  ○
+        *  ○
+        *  ●
+        */
+        public bool make6mok21(int x, int y)
         {
-
             try
-
             {
-
-                for (int i = x, j = y; i > x - 5; i--, j--)
-
+                for (int i = y; i > y - 6; i--)
                 {
-
-                    if (board[i, j] != board[x, y]) return false;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return false;
-
-            }
-
-            return true;
-
-        }
-
-
-
-        public bool make5mok9(int x, int y)
-
-        {
-
-            try
-
-            {
-
-                for (int i = y - 1; i < y + 4; i++)
-
-                {
-
                     if (board[x, i] != board[x, y]) return false;
-
                 }
-
             }
-
             catch (IndexOutOfRangeException)
-
             {
-
                 return false;
-
             }
-
             return true;
-
         }
-
-
-
-        public bool make5mok10(int x, int y)
-
+        /*           ○
+                   ○
+                 ●
+               ○
+             ○
+           ○*/
+        public bool make6mok22(int x, int y)
         {
-
             try
-
             {
-
-                for (int i = x - 1, j = y + 1; i < x + 4; i++, j--)
-
+                for (int i = x + 2, j = y - 2; i > x - 6; i--, j++)
                 {
-
                     if (board[i, j] != board[x, y]) return false;
-
                 }
-
             }
-
             catch (IndexOutOfRangeException)
-
             {
-
                 return false;
-
             }
-
             return true;
-
         }
-
-
-
-        public bool make5mok11(int x, int y)
-
+        /*           ○
+                   ○
+                 ○
+               ●
+             ○
+           ○*/
+        public bool make6mok23(int x, int y)
         {
-
             try
-
             {
-
-                for (int i = x - 1; i < x + 4; i++)
-
+                for (int i = x + 3, j = y - 3; i > x - 6; i--, j++)
                 {
-
-                    if (board[i, y] != board[x, y]) return false;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return false;
-
-            }
-
-            return true;
-
-        }
-
-
-
-        public bool make5mok12(int x, int y)
-
-        {
-
-            try
-
-            {
-
-                for (int i = x - 1, j = y - 1; i < x + 4; i++, j++)
-
-                {
-
                     if (board[i, j] != board[x, y]) return false;
-
                 }
-
             }
-
             catch (IndexOutOfRangeException)
-
             {
-
                 return false;
-
             }
-
             return true;
-
         }
-
-
-
-        public bool make5mok13(int x, int y)
-
+        /*○
+         *  ○
+         *    ●
+         *      ○
+         *        ○
+         *          ○*/
+        public bool make6mok24(int x, int y)
         {
-
             try
-
             {
-
-                for (int i = y + 1; i > y - 4; i--)
-
+                for (int i = x - 2, j = y - 2; i < x + 6; i++, j++)
                 {
-
-                    if (board[x, i] != board[x, y]) return false;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return false;
-
-            }
-
-            return true;
-
-        }
-
-
-
-        public bool make5mok14(int x, int y)
-
-        {
-
-            try
-
-            {
-
-                for (int i = x + 1, j = y - 1; i > x - 4; i--, j++)
-
-                {
-
                     if (board[i, j] != board[x, y]) return false;
-
                 }
-
             }
-
             catch (IndexOutOfRangeException)
-
             {
-
                 return false;
-
             }
-
             return true;
-
         }
-
-
-
-        public bool make5mok15(int x, int y)
-
+        /*○
+         *  ○
+         *    ○
+         *      ●
+         *        ○
+         *          ○*/
+        public bool make6mok25(int x, int y)
         {
-
             try
-
             {
-
-                for (int i = x + 1; i > x - 4; i--)
-
+                for (int i = x - 3, j = y - 3 ; i < x + 6; i++, j++)
                 {
-
-                    if (board[i, y] != board[x, y]) return false;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return false;
-
-            }
-
-            return true;
-
-        }
-
-
-
-        public bool make5mok16(int x, int y)
-
-        {
-
-            try
-
-            {
-
-                for (int i = x + 1, j = y + 1; i > x - 4; i--, j--)
-
-                {
-
                     if (board[i, j] != board[x, y]) return false;
-
                 }
-
             }
-
             catch (IndexOutOfRangeException)
-
             {
-
                 return false;
-
             }
-
             return true;
-
         }
-
-
-
-        public bool make5mok17(int x, int y)
-
-        {
-
-            try
-
-            {
-
-                for (int i = y - 2; i < y + 3; i++)
-
-                {
-
-                    if (board[x, i] != board[x, y]) return false;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return false;
-
-            }
-
-            return true;
-
-        }
-
-
-
-        public bool make5mok18(int x, int y)
-
-        {
-
-            try
-
-            {
-
-                for (int i = x - 2; i < x + 3; i++)
-
-                {
-
-                    if (board[i, y] != board[x, y]) return false;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return false;
-
-            }
-
-            return true;
-
-        }
-
-
-
-        public bool make5mok19(int x, int y)
-
-        {
-
-            try
-
-            {
-
-                for (int i = y + 2; i > y - 3; i--)
-
-                {
-
-                    if (board[x, i] != board[x, y]) return false;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return false;
-
-            }
-
-            return true;
-
-        }
-
-
-
-        public bool make5mok20(int x, int y)
-
-        {
-
-            try
-
-            {
-
-                for (int i = x + 2; i > x - 3; i--)
-
-                {
-
-                    if (board[i, y] != board[x, y]) return false;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return false;
-
-            }
-
-            return true;
-
-        }
-
-
 
         /*------------- 3목이 만들어질 수 있는 경우의 수 판별  -------------*/
 
@@ -980,7 +876,259 @@ namespace Client
 
 
 
-        public int make3mok1(int x, int y)
+        public int make4mok1(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x, y] == board[x, y + 1] && board[x, y] == board[x, y + 2] && board[x, y] == board[x, y + 3])
+                {
+                    count = 2;
+                    // 5목인 경우
+                    if (y < edgeCount - 4 && board[x, y] == board[x, y + 4]) return -1;
+                    if (y > 0 && board[x, y] == board[x, y - 1]) return -1;
+                    // 5목이 아닌 경우 닫혔는지 확인
+                    if (y == edgeCount - 4 || board[x, y + 4] != 0) count--;
+                    if (y == 0 || board[x, y - 1] != 0) count--;
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+           return count;
+        }
+
+
+
+        public int make4mok2(int x, int y)
+        {
+
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x, y + 1] == 0 && board[x, y] == board[x, y + 2] && board[x, y] == board[x, y + 3] && board[x, y] == board[x, y + 4])
+
+                {
+
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (y < edgeCount - 5 && board[x, y] == board[x, y + 5]) return -1;
+
+                    if (y > 0 && board[x, y] == board[x, y - 1]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (y == edgeCount - 5 || board[x, y + 5] != 0) count--;
+
+                    if (y == 0 || board[x, y - 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make4mok3(int x, int y)
+        {
+
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x, y + 2] == 0 && board[x, y] == board[x, y + 1] && board[x, y] == board[x, y + 3] && board[x, y] == board[x, y + 4])
+
+                {
+
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (y < edgeCount - 5 && board[x, y] == board[x, y + 5]) return -1;
+
+                    if (y > 0 && board[x, y] == board[x, y - 1]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (y == edgeCount - 5 || board[x, y + 5] != 0) count--;
+
+                    if (y == 0 || board[x, y - 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make4mok4(int x, int y)
+        {
+
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x, y] == board[x - 1, y + 1] && board[x, y] == board[x - 2, y + 2] && board[x, y] == board[x - 3, y + 3])
+
+                {
+
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (x > 3 && y < edgeCount - 4 && board[x, y] == board[x - 4, y + 4]) return -1;
+
+                    if (x < edgeCount - 1 && y > 0 && board[x, y] == board[x + 1, y - 1]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (x == 3 || y == edgeCount - 4 || board[x - 4, y + 4] != 0) count--;
+
+                    if (x == edgeCount - 1 || y == 0 || board[x + 1, y - 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make4mok5(int x, int y)
+        {
+
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x - 1, y + 1] == 0 
+                    && board[x, y] == board[x - 2, y + 2] 
+                    && board[x, y] == board[x - 3, y + 3] 
+                    && board[x, y] == board[x - 4, y + 4])
+
+                {
+
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (x > 4 && y < edgeCount - 5 && board[x, y] == board[x - 5, y + 5]) return -1;
+
+                    if (x < edgeCount - 1 && y > 0 && board[x, y] == board[x + 1, y - 1]) return -1;
+
+                    // 4목이 아닌 경우 닫혔는지 확인
+
+                    if (x == 4 || y == edgeCount - 5 || board[x - 5, y + 5] != 0) count--;
+
+                    if (x == edgeCount - 1 || y == 0 || board[x + 1, y - 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make4mok6(int x, int y)
+        {
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x - 2, y + 2] == 0 && board[x, y] == board[x - 1, y + 1] && board[x, y] == board[x - 3, y + 3] && board[x, y] == board[x - 4, y + 4])
+
+                {
+
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (x > 4 && y < edgeCount - 5 && board[x, y] == board[x - 5, y + 5]) return -1;
+
+                    if (x < edgeCount - 1 && y > 0 && board[x, y] == board[x + 1, y - 1]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (x == 4 || y == edgeCount - 5 || board[x - 5, y + 5] != 0) count--;
+
+                    if (x == edgeCount - 1 || y == 0 || board[x + 1, y - 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make4mok7(int x, int y)
 
         {
 
@@ -990,10 +1138,1034 @@ namespace Client
 
             {
 
-                if (board[x, y] == board[x, y + 1] && board[x, y] == board[x, y + 2])
+                if (board[x, y] == board[x - 1, y] && board[x - 2, y] == board[x, y] && board[x - 3, y] == board[x, y])
 
                 {
 
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (x < edgeCount - 1 && board[x, y] == board[x + 1, y]) return -1;
+
+                    if (x > 3 && board[x, y] == board[x - 4, y]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (x == edgeCount - 1 || board[x + 1, y] != 0) count--;
+
+                    if (x == 3 || board[x - 4, y] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make4mok8(int x, int y)
+        {
+
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x - 1, y] == 0 
+                    && board[x, y] == board[x - 2, y] 
+                    && board[x - 3, y] == board[x, y] 
+                    && board[x - 4, y] == board[x, y])
+
+                {
+
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (x < edgeCount - 1 && board[x, y] == board[x + 1, y]) return -1;
+
+                    if (x > 4 && board[x, y] == board[x - 5, y]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (x == edgeCount - 1 || board[x + 1, y] != 0) count--;
+
+                    if (x == 4 || board[x - 5, y] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make4mok9(int x, int y)
+        {
+
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x - 2, y] == 0 
+                    && board[x, y] == board[x - 1, y] 
+                    && board[x - 3, y] == board[x, y] 
+                    && board[x - 4, y] == board[x, y])
+
+                {
+
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (x < edgeCount - 1 && board[x, y] == board[x + 1, y]) return -1;
+
+                    if (x > 4 && board[x, y] == board[x - 5, y]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (x == edgeCount - 1 || board[x + 1, y] != 0) count--;
+
+                    if (x == 4 || board[x - 5, y] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make4mok10(int x, int y)
+        {
+
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x, y] == board[x - 1, y - 1] && board[x, y] == board[x - 2, y - 2] && board[x, y] == board[x - 3, y - 3])
+
+                {
+
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (x > 3 && y > 3 && board[x, y] == board[x - 4, y - 4]) return -1;
+
+                    if (x < edgeCount - 1 && y < edgeCount - 1 && board[x, y] == board[x + 1, y + 1]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (x == 3 || y == 3 || board[x - 4, y - 4] != 0) count--;
+
+                    if (x == edgeCount - 1 || y == edgeCount - 1 || board[x + 1, y + 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make4mok11(int x, int y)
+        {
+
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x - 1, y - 1] == 0 && board[x, y] == board[x - 2, y - 2] && board[x, y] == board[x - 3, y - 3] && board[x, y] == board[x - 4, y -4 ])
+
+                {
+
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (x > 4 && y > 4 && board[x, y] == board[x - 5, y - 5]) return -1;
+
+                    if (x < edgeCount - 1 && y < edgeCount - 1 && board[x, y] == board[x + 1, y + 1]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (x == 4 || y == 4 || board[x - 5, y - 5] != 0) count--;
+
+                    if (x == edgeCount - 1 || y == edgeCount - 1 || board[x + 1, y + 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make4mok12(int x, int y)
+
+        {
+
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x - 2, y - 2] == 0 
+                    && board[x, y] == board[x - 1, y - 1] 
+                    && board[x, y] == board[x - 3, y - 3] 
+                    && board[x, y] == board[x - 4, y - 5])
+
+                {
+
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (x > 4 && y > 4 && board[x, y] == board[x - 5, y - 5]) return -1;
+
+                    if (x < edgeCount - 1 && y < edgeCount - 1 && board[x, y] == board[x + 1, y + 1]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (x == 4 || y == 4 || board[x - 5, y - 5] != 0) count--;
+
+                    if (x == edgeCount - 1 || y == edgeCount - 1 || board[x + 1, y + 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+        public int make4mok13(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x, y + 3] == 0
+                && board[x, y] == board[x, y + 1]
+                && board[x, y] == board[x, y + 3]
+                && board[x, y] == board[x, y + 4])
+                {
+                    count = 2;
+                    // 5목인 경우
+
+                    if (y < edgeCount - 5 && board[x, y] == board[x, y + 5]) return -1;
+
+                    if (y > 0 && board[x, y] == board[x, y - 1]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (y == edgeCount - 5 || board[x, y + 5] != 0) count--;
+
+                    if (y == 0 || board[x, y - 1] != 0) count--;
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+        public int make4mok14(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x - 3, y + 3] == 0
+                && board[x, y] == board[x - 1, y + 1]
+                && board[x, y] == board[x - 3, y + 3]
+                && board[x, y] == board[x - 4, y + 4])
+                {
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (x > 4 && y < edgeCount - 5 && board[x, y] == board[x - 5, y + 5]) return -1;
+
+                    if (x < edgeCount - 1 && y > 0 && board[x, y] == board[x + 1, y - 1]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (x == 4 || y == edgeCount - 5 || board[x - 5, y + 5] != 0) count--;
+
+                    if (x == edgeCount - 1 || y == 0 || board[x + 1, y - 1] != 0) count--;
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+
+        }
+
+
+        public int make4mok15(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x - 3, y] == 0
+                    && board[x, y] == board[x - 1, y]
+                    && board[x - 3, y] == board[x, y]
+                    && board[x - 4, y] == board[x, y])
+                {
+                    count = 2;
+
+                    // 5목인 경우
+
+                    if (x < edgeCount - 1 && board[x, y] == board[x + 1, y]) return -1;
+
+                    if (x > 4 && board[x, y] == board[x - 5, y]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (x == edgeCount - 1 || board[x + 1, y] != 0) count--;
+
+                    if (x == 4 || board[x - 5, y] != 0) count--;
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+        public int make4mok16(int x, int y)
+        {
+            int count = -1;
+
+            try
+            {
+                if (board[x - 3, y - 3] == 0
+                    && board[x, y] == board[x - 1, y - 1]
+                    && board[x, y] == board[x - 3, y - 3]
+                    && board[x, y] == board[x - 4, y - 5])
+                {
+
+                    count = 2;
+                    // 5목인 경우
+
+                    if (x > 4 && y > 4 && board[x, y] == board[x - 5, y - 5]) return -1;
+
+                    if (x < edgeCount - 1 && y < edgeCount - 1 && board[x, y] == board[x + 1, y + 1]) return -1;
+
+                    // 5목이 아닌 경우 닫혔는지 확인
+
+                    if (x == 4 || y == 4 || board[x - 5, y - 5] != 0) count--;
+
+                    if (x == edgeCount - 1 || y == edgeCount - 1 || board[x + 1, y + 1] != 0) count--;
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+
+        /*------------- 5목이 만들어질 수 있는 경우의 수 판별  -------------*/
+        /*
+
+         * 기본적으로 각 방향으로 5목이 생성되면 count에 2를 설정합니다.
+
+         * 이후에 한 쪽이라도 막혀있으면 count를 1씩 뺍니다.
+
+         * 즉, 열린 5은 두 곳 모두 열려있으므로 2를 반환합니다.
+
+         * 하나 닫힌 5은 1을 반환하며 닫힌 4은 0을 반환하게 됩니다.
+
+         * 5목에 해당하지 않는 경우 -1을 반환합니다.
+
+         * 
+
+         */
+
+        public int make5mok1(int x, int y)
+        {
+
+            int count = -1;
+
+            try
+            {
+
+                if (board[x, y] == board[x, y + 1] && board[x, y] == board[x, y + 2] 
+                    && board[x, y] == board[x, y + 3] && board[x, y] == board[x, y + 4])
+
+                {
+
+                    count = 2;
+
+                    // 5목 주변으로 닫혔는지 확인
+
+                    if (y == edgeCount - 5 || board[x, y + 5] != 0) count--;
+
+                    if (y == 0 || board[x, y - 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+
+
+        public int make5mok2(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x, y + 1] == 0 && board[x, y] == board[x, y + 2] 
+                    && board[x, y] == board[x, y + 3] && board[x, y] == board[x, y + 4]
+                    && board[x, y] == board[x, y + 5]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+        public int make5mok3(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x, y + 2] == 0 && board[x, y] == board[x, y + 1] 
+                    && board[x, y] == board[x, y + 3] && board[x, y] == board[x, y + 4]
+                    && board[x, y] == board[x, y + 4]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+        
+        public int make5mok4(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x, y + 3] == 0 
+                    && board[x, y] == board[x, y + 1]
+                    && board[x, y] == board[x, y + 2] 
+                    && board[x, y] == board[x, y + 4]
+                    && board[x, y] == board[x, y + 5]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+           {
+                return -1;
+            }
+            return count;
+        }
+        
+        public int make5mok5(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x, y] == board[x - 1, y + 1] 
+                    && board[x, y] == board[x - 2, y + 2] 
+                    && board[x, y] == board[x - 3, y + 3]
+                    && board[x, y] == board[x - 4, y + 4])
+                {
+                    count = 2;
+                    // 5목 주변으로 닫혔는지 확인
+                    if (x == edgeCount - 1 || y == 0 || board[x + 1, y - 1] != 0) count--;
+                    if (x == 4 || y == edgeCount - 5 || board[x - 5, y + 5] != 0) count--;
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+
+
+        public int make5mok6(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x - 1, y + 1] == 0 
+                    && board[x, y] == board[x - 2, y + 2] 
+                    && board[x, y] == board[x - 3, y + 3] 
+                    && board[x, y] == board[x - 4, y + 4]
+                    && board[x, y] == board[x - 5, y + 5]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+        public int make5mok7(int x, int y)
+        {
+
+            int count = -1;
+
+            try
+            {
+
+                if (board[x - 2, y + 2] == 0 
+                    && board[x, y] == board[x - 1, y + 1] 
+                    && board[x, y] == board[x - 3, y + 3] 
+                    && board[x, y] == board[x - 4, y + 4]
+                    && board[x, y] == board[x - 5, y + 5]) count = 1;
+            }
+
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+
+            }
+            return count;
+        }
+        
+        public int make5mok8(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+
+                if (board[x - 3, y + 3] == 0 
+                    && board[x, y] == board[x - 1, y + 1] 
+                    && board[x, y] == board[x - 2, y + 2] 
+                    && board[x, y] == board[x - 4, y + 4]
+                    && board[x, y] == board[x - 5, y + 5]) count = 1;
+
+            }
+
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+        
+        public int make5mok9(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x, y] == board[x - 1, y] 
+                    && board[x, y] == board[x - 2, y] 
+                    && board[x - 3, y] == board[x, y] 
+                    && board[x - 4, y] == board[x, y])
+                {
+
+                    count = 2;
+
+                    // 5목 주변으로 닫혔는지 확인
+
+                    if (x == edgeCount - 1 || board[x + 1, y] != 0) count--;
+
+                    if (x == 4 || board[x - 5, y] != 0) count--;
+
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+        public int make5mok10(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x - 1, y] == 0 
+                    && board[x, y] == board[x - 2, y] 
+                    && board[x, y] == board[x - 3, y] 
+                    && board[x - 4, y] == board[x, y]
+                    && board[x - 5, y] == board[x, y]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+        
+        public int make5mok11(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x - 2, y] == 0
+                    && board[x, y] == board[x - 1, y] 
+                    && board[x, y] == board[x - 3, y]
+                    && board[x - 4, y] == board[x, y]
+                    && board[x - 5, y] == board[x, y]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+
+        }
+
+        public int make5mok12(int x, int y)
+        {
+            int count = -1;
+            try
+           {
+                if (board[x - 3, y] == 0
+                    && board[x, y] == board[x - 2, y]
+                    && board[x, y] == board[x - 1, y] 
+                    && board[x - 4, y] == board[x, y]
+                    && board[x - 5, y] == board[x, y]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+        public int make5mok13(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x, y] == board[x - 1, y - 1] 
+                    && board[x, y] == board[x - 2, y - 2] 
+                    && board[x, y] == board[x - 3, y - 3]
+                    && board[x, y] == board[x - 4, y - 4])
+                {
+                    count = 2;
+                    // 5목 주변으로 닫혔는지 확인
+                    if (x == edgeCount - 1 || y == edgeCount - 1 || board[x + 1, y + 1] != 0) count--;
+                    if (x == 4 || y == 4 || board[x - 5, y - 5] != 0) count--;
+               }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+        
+        public int make5mok14(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x - 1, y - 1] == 0 
+                    && board[x, y] == board[x - 2, y - 2]
+                    && board[x, y] == board[x - 3, y - 3] 
+                    && board[x, y] == board[x - 4, y - 4]
+                    && board[x, y] == board[x - 5, y - 5]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+        
+        public int make5mok15(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x - 2, y - 2] == 0 
+                    && board[x, y] == board[x - 1, y - 1] 
+                    && board[x, y] == board[x - 3, y - 3]
+                    && board[x, y] == board[x - 4, y - 4]
+                    && board[x, y] == board[x - 5, y - 5]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+        
+        public int make5mok16(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x - 3, y - 3] == 0 
+                    && board[x, y] == board[x - 1, y - 1] 
+                    && board[x, y] == board[x - 2, y - 2] 
+                    && board[x, y] == board[x - 4, y - 4]
+                    && board[x, y] == board[x - 5, y - 5]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+        /*6목 에서 5목의 경우 추가*/
+        public int make5mok17(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x, y + 4] == 0
+                    && board[x, y] == board[x, y + 1]
+                    && board[x, y] == board[x, y + 2]
+                    && board[x, y] == board[x, y + 4]
+                    && board[x, y] == board[x, y + 5]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+        public int make5mok18(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+
+                if (board[x - 4, y + 4] == 0
+                    && board[x, y] == board[x - 1, y + 1]
+                    && board[x, y] == board[x - 2, y + 2]
+                    && board[x, y] == board[x - 4, y + 4]
+                    && board[x, y] == board[x - 5, y + 5]) count = 1;
+
+            }
+
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+        public int make5mok19(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+
+                if (board[x - 5, y + 5] == 0
+                    && board[x, y] == board[x - 1, y + 1]
+                    && board[x, y] == board[x - 2, y + 2]
+                    && board[x, y] == board[x - 4, y + 4]
+                    && board[x, y] == board[x - 5, y + 5]) count = 1;
+
+            }
+
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+        public int make5mok20(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+                if (board[x - 4, y - 4] == 0
+                    && board[x, y] == board[x - 1, y - 1]
+                    && board[x, y] == board[x - 2, y - 2]
+                    && board[x, y] == board[x - 4, y - 4]
+                    && board[x, y] == board[x - 5, y - 5]) count = 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return -1;
+            }
+            return count;
+        }
+
+
+        /*------------- 3목이 만들어질 수 있는 경우의 수 판별  -------------*/
+
+
+
+        /*
+
+         * 기본적으로 각 방향으로 3목이 생성되면 count에 2를 설정합니다.
+
+         * 이후에 한 쪽이라도 막혀있으면 count를 1씩 뺍니다.
+
+         * 즉, 열린 2은 두 곳 모두 열려있으므로 2를 반환합니다.
+
+         * 하나 닫힌 2은 1을 반환하며 닫힌 3은 0을 반환하게 됩니다.
+
+         * 
+
+         */
+
+
+
+        public int make3mok1(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+
+                if (board[x, y] == board[x, y + 1] && board[x, y] == board[x, y + 2])
+                {
+                    count = 2;
+
+                    // 4목인 경우
+
+                    if (y < edgeCount - 3 && board[x, y] == board[x, y + 3]) return -1;
+
+                    if (y > 0 && board[x, y] == board[x, y - 1]) return -1;
+
+                    // 4목이 아닌 경우 닫혔는지 확인
+
+                    if (y == edgeCount - 3 || board[x, y + 3] != 0) count--;
+
+                    if (y == 0 || board[x, y - 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+        
+        public int make3mok2(int x, int y)
+        {
+            int count = -1;
+
+            try
+            {
+
+                if (board[x, y] == board[x - 1, y + 1]&& board[x, y] == board[x - 2, y + 2])
+                {
+
+                    count = 2;
+
+                    // 4목인 경우
+
+                    if (x > 1 && y < edgeCount - 3 && board[x, y] == board[x - 3, y + 3]) return -1;
+
+                    if (x < edgeCount - 1 && y > 0 && board[x, y] == board[x + 1, y - 1]) return -1;
+
+                    // 4목이 아닌 경우 닫혔는지 확인
+
+                    if (x == 1 || y == edgeCount - 3 || board[x - 3, y + 3] != 0) count--;
+
+                    if (x == edgeCount - 1 || y == 0 || board[x + 1, y - 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make3mok3(int x, int y)
+
+        {
+
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x, y] == board[x - 1, y]&& board[x, y] == board[x - 2, y])
+
+                {
+
+                    count = 2;
+
+                    // 4목인 경우
+
+                    if (x > 1 && board[x, y] == board[x - 3, y]) return -1;
+
+                    if (x < edgeCount - 1 && board[x, y] == board[x + 1, y]) return -1;
+
+                    // 4목이 아닌 경우 닫혔는지 확인
+
+                    if (x == 1 || board[x - 3, y] != 0) count--;
+
+                    if (x == edgeCount - 1 || board[x + 1, y] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+
+
+        public int make3mok4(int x, int y)
+        {
+
+            int count = -1;
+
+            try
+
+            {
+
+                if (board[x, y] == board[x - 1, y - 1]&& board[x, y] == board[x - 2, y - 2])
+
+                {
+
+                    count = 2;
+
+                    // 4목인 경우
+
+                    if (x > 1 && y > 1 && board[x, y] == board[x - 3, y -3]) return -1;
+
+                    if (x < edgeCount - 1 && y < edgeCount - 1 && board[x, y] == board[x + 1, y + 1]) return -1;
+
+                    // 4목이 아닌 경우 닫혔는지 확인
+
+                    if (x == 1 || y == 1 || board[x - 3, y - 3] != 0) count--;
+
+                    if (x == edgeCount - 1 || y == edgeCount - 1 || board[x + 1, y + 1] != 0) count--;
+
+                }
+
+            }
+
+            catch (IndexOutOfRangeException)
+
+            {
+
+                return -1;
+
+            }
+
+            return count;
+
+        }
+
+        public int make3mok5(int x, int y)
+        {
+            int count = -1;
+            try
+            {
+
+                if (board[x, y + 1] == 0
+                && board[x, y] == board[x, y + 2]
+                && board[x, y] == board[x, y + 3])
+                {
                     count = 2;
 
                     // 4목인 경우
@@ -1025,216 +2197,29 @@ namespace Client
         }
 
 
-
-        public int make3mok2(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x, y + 1] == 0 && board[x, y] == board[x, y + 2] && board[x, y] == board[x, y + 3])
-
-                {
-
-                    count = 2;
-
-                    // 4목인 경우
-
-                    if (y < edgeCount - 4 && board[x, y] == board[x, y + 4]) return -1;
-
-                    if (y > 0 && board[x, y] == board[x, y - 1]) return -1;
-
-                    // 4목이 아닌 경우 닫혔는지 확인
-
-                    if (y == edgeCount - 4 || board[x, y + 4] != 0) count--;
-
-                    if (y == 0 || board[x, y - 1] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make3mok3(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x, y + 2] == 0 && board[x, y] == board[x, y + 1] && board[x, y] == board[x, y + 3])
-
-                {
-
-                    count = 2;
-
-                    // 4목인 경우
-
-                    if (y < edgeCount - 4 && board[x, y] == board[x, y + 4]) return -1;
-
-                    if (y > 0 && board[x, y] == board[x, y - 1]) return -1;
-
-                    // 4목이 아닌 경우 닫혔는지 확인
-
-                    if (y == edgeCount - 4 || board[x, y + 4] != 0) count--;
-
-                    if (y == 0 || board[x, y - 1] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make3mok4(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x, y] == board[x - 1, y + 1] && board[x, y] == board[x - 2, y + 2])
-
-                {
-
-                    count = 2;
-
-                    // 4목인 경우
-
-                    if (x > 2 && y < edgeCount - 3 && board[x, y] == board[x - 3, y + 3]) return -1;
-
-                    if (x < edgeCount - 1 && y > 0 && board[x, y] == board[x + 1, y - 1]) return -1;
-
-                    // 4목이 아닌 경우 닫혔는지 확인
-
-                    if (x == 2 || y == edgeCount - 3 || board[x - 3, y + 3] != 0) count--;
-
-                    if (x == edgeCount - 1 || y == 0 || board[x + 1, y - 1] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make3mok5(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 1, y + 1] == 0 && board[x, y] == board[x - 2, y + 2] && board[x, y] == board[x - 3, y + 3])
-
-                {
-
-                    count = 2;
-
-                    // 4목인 경우
-
-                    if (x > 3 && y < edgeCount - 4 && board[x, y] == board[x - 4, y + 4]) return -1;
-
-                    if (x < edgeCount - 1 && y > 0 && board[x, y] == board[x + 1, y - 1]) return -1;
-
-                    // 4목이 아닌 경우 닫혔는지 확인
-
-                    if (x == 3 || y == edgeCount - 4 || board[x - 4, y + 4] != 0) count--;
-
-                    if (x == edgeCount - 1 || y == 0 || board[x + 1, y - 1] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
         public int make3mok6(int x, int y)
-
         {
-
             int count = -1;
 
             try
-
             {
 
-                if (board[x - 2, y + 2] == 0 && board[x, y] == board[x - 1, y + 1] && board[x, y] == board[x - 3, y + 3])
-
+                if (board[x - 1, y + 1] == 0
+                && board[x, y] == board[x - 2, y + 2]
+                && board[x, y] == board[x - 3, y + 3])
                 {
 
                     count = 2;
 
                     // 4목인 경우
 
-                    if (x > 3 && y < edgeCount - 4 && board[x, y] == board[x - 4, y + 4]) return -1;
+                    if (x > 1 && y < edgeCount - 3 && board[x, y] == board[x - 3, y + 3]) return -1;
 
                     if (x < edgeCount - 1 && y > 0 && board[x, y] == board[x + 1, y - 1]) return -1;
 
                     // 4목이 아닌 경우 닫혔는지 확인
 
-                    if (x == 3 || y == edgeCount - 4 || board[x - 4, y + 4] != 0) count--;
+                    if (x == 1 || y == edgeCount - 3 || board[x - 3, y + 3] != 0) count--;
 
                     if (x == edgeCount - 1 || y == 0 || board[x + 1, y - 1] != 0) count--;
 
@@ -1266,7 +2251,9 @@ namespace Client
 
             {
 
-                if (board[x, y] == board[x - 1, y] && board[x - 2, y] == board[x, y])
+                if (board[x - 1, y] == 0
+                && board[x, y] == board[x - 2, y]
+                && board[x, y] == board[x - 3, y])
 
                 {
 
@@ -1274,15 +2261,15 @@ namespace Client
 
                     // 4목인 경우
 
-                    if (x < edgeCount - 1 && board[x, y] == board[x + 1, y]) return -1;
+                    if (x > 1 && board[x, y] == board[x - 3, y]) return -1;
 
-                    if (x > 2 && board[x, y] == board[x - 3, y]) return -1;
+                    if (x < edgeCount - 1 && board[x, y] == board[x + 1, y]) return -1;
 
                     // 4목이 아닌 경우 닫혔는지 확인
 
-                    if (x == edgeCount - 1 || board[x + 1, y] != 0) count--;
+                    if (x == 1 || board[x - 3, y] != 0) count--;
 
-                    if (x == 2 || board[x - 3, y] != 0) count--;
+                    if (x == edgeCount - 1 || board[x + 1, y] != 0) count--;
 
                 }
 
@@ -1303,7 +2290,6 @@ namespace Client
 
 
         public int make3mok8(int x, int y)
-
         {
 
             int count = -1;
@@ -1312,7 +2298,9 @@ namespace Client
 
             {
 
-                if (board[x - 1, y] == 0 && board[x, y] == board[x - 2, y] && board[x - 3, y] == board[x, y])
+                if (board[x - 1, y - 1] == 0
+                && board[x, y] == board[x - 2, y - 2]
+                && board[x, y] == board[x - 3, y - 3])
 
                 {
 
@@ -1320,105 +2308,13 @@ namespace Client
 
                     // 4목인 경우
 
-                    if (x < edgeCount - 1 && board[x, y] == board[x + 1, y]) return -1;
-
-                    if (x > 3 && board[x, y] == board[x - 4, y]) return -1;
-
-                    // 4목이 아닌 경우 닫혔는지 확인
-
-                    if (x == edgeCount - 1 || board[x + 1, y] != 0) count--;
-
-                    if (x == 3 || board[x - 4, y] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make3mok9(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 2, y] == 0 && board[x, y] == board[x - 1, y] && board[x - 3, y] == board[x, y])
-
-                {
-
-                    count = 2;
-
-                    // 4목인 경우
-
-                    if (x < edgeCount - 1 && board[x, y] == board[x + 1, y]) return -1;
-
-                    if (x > 3 && board[x, y] == board[x - 4, y]) return -1;
-
-                    // 4목이 아닌 경우 닫혔는지 확인
-
-                    if (x == edgeCount - 1 || board[x + 1, y] != 0) count--;
-
-                    if (x == 3 || board[x - 4, y] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make3mok10(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x, y] == board[x - 1, y - 1] && board[x, y] == board[x - 2, y - 2])
-
-                {
-
-                    count = 2;
-
-                    // 4목인 경우
-
-                    if (x > 2 && y > 2 && board[x, y] == board[x - 3, y - 3]) return -1;
+                    if (x > 1 && y > 1 && board[x, y] == board[x - 3, y - 3]) return -1;
 
                     if (x < edgeCount - 1 && y < edgeCount - 1 && board[x, y] == board[x + 1, y + 1]) return -1;
 
                     // 4목이 아닌 경우 닫혔는지 확인
 
-                    if (x == 2 || y == 2 || board[x - 3, y - 3] != 0) count--;
+                    if (x == 1 || y == 1 || board[x - 3, y - 3] != 0) count--;
 
                     if (x == edgeCount - 1 || y == edgeCount - 1 || board[x + 1, y + 1] != 0) count--;
 
@@ -1437,653 +2333,16 @@ namespace Client
             return count;
 
         }
-
-
-
-        public int make3mok11(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 1, y - 1] == 0 && board[x, y] == board[x - 2, y - 2] && board[x, y] == board[x - 3, y - 3])
-
-                {
-
-                    count = 2;
-
-                    // 4목인 경우
-
-                    if (x > 3 && y > 3 && board[x, y] == board[x - 4, y - 4]) return -1;
-
-                    if (x < edgeCount - 1 && y < edgeCount - 1 && board[x, y] == board[x + 1, y + 1]) return -1;
-
-                    // 4목이 아닌 경우 닫혔는지 확인
-
-                    if (x == 3 || y == 3 || board[x - 4, y - 4] != 0) count--;
-
-                    if (x == edgeCount - 1 || y == edgeCount - 1 || board[x + 1, y + 1] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make3mok12(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 2, y - 2] == 0 && board[x, y] == board[x - 1, y - 1] && board[x, y] == board[x - 3, y - 3])
-
-                {
-
-                    count = 2;
-
-                    // 4목인 경우
-
-                    if (x > 3 && y > 3 && board[x, y] == board[x - 4, y - 4]) return -1;
-
-                    if (x < edgeCount - 1 && y < edgeCount - 1 && board[x, y] == board[x + 1, y + 1]) return -1;
-
-                    // 4목이 아닌 경우 닫혔는지 확인
-
-                    if (x == 3 || y == 3 || board[x - 4, y - 4] != 0) count--;
-
-                    if (x == edgeCount - 1 || y == edgeCount - 1 || board[x + 1, y + 1] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        /*------------- 4목이 만들어질 수 있는 경우의 수 판별  -------------*/
-
-
-
-        /*
-
-         * 기본적으로 각 방향으로 4목이 생성되면 count에 2를 설정합니다.
-
-         * 이후에 한 쪽이라도 막혀있으면 count를 1씩 뺍니다.
-
-         * 즉, 열린 4은 두 곳 모두 열려있으므로 2를 반환합니다.
-
-         * 하나 닫힌 4은 1을 반환하며 닫힌 4은 0을 반환하게 됩니다.
-
-         * 4목에 해당하지 않는 경우 -1을 반환합니다.
-
-         * 
-
-         */
-
-
-
-        public int make4mok1(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x, y] == board[x, y + 1] && board[x, y] == board[x, y + 2] && board[x, y] == board[x, y + 3])
-
-                {
-
-                    count = 2;
-
-                    // 4목 주변으로 닫혔는지 확인
-
-                    if (y == edgeCount - 4 || board[x, y + 4] != 0) count--;
-
-                    if (y == 0 || board[x, y - 1] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok2(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x, y + 1] == 0 && board[x, y] == board[x, y + 2] && board[x, y] == board[x, y + 3] && board[x, y] == board[x, y + 4]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok3(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x, y + 2] == 0 && board[x, y] == board[x, y + 1] && board[x, y] == board[x, y + 3] && board[x, y] == board[x, y + 4]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok4(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x, y + 3] == 0 && board[x, y] == board[x, y + 1] && board[x, y] == board[x, y + 2] && board[x, y] == board[x, y + 4]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok5(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x, y] == board[x - 1, y + 1] && board[x, y] == board[x - 2, y + 2] && board[x, y] == board[x - 3, y + 3])
-
-                {
-
-                    count = 2;
-
-                    // 4목 주변으로 닫혔는지 확인
-
-                    if (x == edgeCount - 1 || y == 0 || board[x + 1, y - 1] != 0) count--;
-
-                    if (x == 3 || y == edgeCount - 4 || board[x - 4, y + 4] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok6(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 1, y + 1] == 0 && board[x, y] == board[x - 2, y + 2] && board[x, y] == board[x - 3, y + 3] && board[x, y] == board[x - 4, y + 4]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok7(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 2, y + 2] == 0 && board[x, y] == board[x - 1, y + 1] && board[x, y] == board[x - 3, y + 3] && board[x, y] == board[x - 4, y + 4]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok8(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 3, y + 3] == 0 && board[x, y] == board[x - 1, y + 1] && board[x, y] == board[x - 2, y + 2] && board[x, y] == board[x - 4, y + 4]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok9(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x, y] == board[x - 1, y] && board[x, y] == board[x - 2, y] && board[x - 3, y] == board[x, y])
-
-                {
-
-                    count = 2;
-
-                    // 4목 주변으로 닫혔는지 확인
-
-                    if (x == edgeCount - 1 || board[x + 1, y] != 0) count--;
-
-                    if (x == 3 || board[x - 4, y] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok10(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 1, y] == 0 && board[x, y] == board[x - 2, y] && board[x, y] == board[x - 3, y] && board[x - 4, y] == board[x, y]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok11(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 2, y] == 0 && board[x, y] == board[x - 1, y] && board[x, y] == board[x - 3, y] && board[x - 4, y] == board[x, y]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok12(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 3, y] == 0 && board[x, y] == board[x - 2, y] && board[x, y] == board[x - 1, y] && board[x - 4, y] == board[x, y]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok13(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x, y] == board[x - 1, y - 1] && board[x, y] == board[x - 2, y - 2] && board[x, y] == board[x - 3, y - 3])
-
-                {
-
-                    count = 2;
-
-                    // 4목 주변으로 닫혔는지 확인
-
-                    if (x == edgeCount - 1 || y == edgeCount - 1 || board[x + 1, y + 1] != 0) count--;
-
-                    if (x == 3 || y == 3 || board[x - 4, y - 4] != 0) count--;
-
-                }
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok14(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 1, y - 1] == 0 && board[x, y] == board[x - 2, y - 2] && board[x, y] == board[x - 3, y - 3] && board[x, y] == board[x - 4, y - 4]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok15(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 2, y - 2] == 0 && board[x, y] == board[x - 1, y - 1] && board[x, y] == board[x - 3, y - 3] && board[x, y] == board[x - 4, y - 4]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        public int make4mok16(int x, int y)
-
-        {
-
-            int count = -1;
-
-            try
-
-            {
-
-                if (board[x - 3, y - 3] == 0 && board[x, y] == board[x - 1, y - 1] && board[x, y] == board[x - 2, y - 2] && board[x, y] == board[x - 4, y - 4]) count = 1;
-
-            }
-
-            catch (IndexOutOfRangeException)
-
-            {
-
-                return -1;
-
-            }
-
-            return count;
-
-        }
-
-
-
-        /*------------- 2목이 만들어질 수 있는 경우의 수 판별  -------------*/
-
-
-
-        /*
-
-         * 기본적으로 각 방향으로 2목이 생성되면 count에 2를 설정합니다.
-
-         * 이후에 한 쪽이라도 막혀있으면 count를 1씩 뺍니다.
-
-         * 즉, 열린 2은 두 곳 모두 열려있으므로 2를 반환합니다.
-
-         * 하나 닫힌 2은 1을 반환하며 닫힌 3은 0을 반환하게 됩니다.
-
-         * 
-
-         */
-
-
-
+        /*------------- 2목의 상황 -------------*/
         public int make2mok1(int x, int y)
-
         {
-
             int count = -1;
-
             try
-
             {
 
-                if (board[x, y] == board[x, y + 1])
-
+                if (board[x, y + 1] == board[x, y]
+                && board[x, y] == board[x, y + 2])
                 {
-
                     count = 2;
 
                     // 3목인 경우
@@ -2115,21 +2374,15 @@ namespace Client
         }
 
 
-
-
-
         public int make2mok2(int x, int y)
-
         {
-
             int count = -1;
 
             try
-
             {
 
-                if (board[x, y] == board[x - 1, y + 1])
-
+                if (board[x - 1, y + 1] == board[x, y]
+                && board[x, y] == board[x - 2, y + 2])
                 {
 
                     count = 2;
@@ -2174,7 +2427,8 @@ namespace Client
 
             {
 
-                if (board[x, y] == board[x - 1, y])
+                if (board[x - 1, y] == board[x, y]
+                && board[x, y] == board[x - 2, y])
 
                 {
 
@@ -2211,7 +2465,6 @@ namespace Client
 
 
         public int make2mok4(int x, int y)
-
         {
 
             int count = -1;
@@ -2220,7 +2473,8 @@ namespace Client
 
             {
 
-                if (board[x, y] == board[x - 1, y - 1])
+                if (board[x - 1, y - 1] == board[x, y]
+                && board[x, y] == board[x - 2, y - 2])
 
                 {
 
@@ -2273,6 +2527,9 @@ namespace Client
             int open2 = 0;
             int close2 = 0;
             int half2 = 0;
+            int open1 = 0;
+            int close1 = 0;
+            int half1 = 0;
             int count;
 
             // 모든 바둑판을 검사
@@ -2284,208 +2541,309 @@ namespace Client
                     // 자신의 돌이 있는 경우
                     if (board[i, j] == horse)
                     {
-                        // 5목이 만들어진 경우
-                        if (make5mok1(i, j) || make5mok2(i, j) || make5mok3(i, j) || make5mok4(i, j) || make5mok5(i, j) ||
-                                make5mok6(i, j) || make5mok7(i, j) || make5mok8(i, j) || make5mok9(i, j) || make5mok10(i, j) ||
-                                make5mok11(i, j) || make5mok12(i, j) || make5mok13(i, j) || make5mok14(i, j) || make5mok15(i, j) ||
-                                make5mok16(i, j) || make5mok17(i, j) || make5mok18(i, j) || make5mok19(i, j) || make5mok20(i, j))
+                        // 6목이 만들어진 경우
+                        if (make6mok1(i, j) || make6mok2(i, j) || make6mok3(i, j) || make6mok4(i, j) || make6mok5(i, j) ||
+                                make6mok6(i, j) || make6mok7(i, j) || make6mok8(i, j) || make6mok9(i, j) || make6mok10(i, j) ||
+                                make6mok11(i, j) || make6mok12(i, j) || make6mok13(i, j) || make6mok14(i, j) || make6mok15(i, j) ||
+                                make6mok16(i, j) || make6mok17(i, j) || make6mok18(i, j) || make6mok19(i, j) || make6mok20(i, j) ||
+                            make6mok21(i, j) || make6mok22(i, j) || make6mok23(i, j) || make6mok24(i, j) || make6mok25(i, j))
                         {
                             return 1000000;
                         }
 
-                        /********** 단순히 전체에서 4목이 만들어진 경우만 체크 **********/
-                        count = make4mok1(i, j);
+                        /********** 단순히 전체에서 5목이 만들어진 경우만 체크 **********/
+                        count = make5mok1(i, j);
                         if (count == 2) open4++;
                         else if (count == 1) half4++;
                         else if (count == 0) close4++;
 
-                        count = make4mok2(i, j);
+                        count = make5mok2(i, j);
                         if (count == 2) open4++;
                         else if (count == 1) half4++;
                         else if (count == 0) close4++;
+
+                        count = make5mok3(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok4(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok5(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok6(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok7(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok8(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok9(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok10(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok11(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok12(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok13(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok14(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok15(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok16(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        //6목 added
+                        count = make5mok17(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok18(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok19(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        count = make5mok20(i, j);
+
+                        if (count == 2) open4++;
+                        else if (count == 1) half4++;
+                        else if (count == 0) close4++;
+
+                        /********** 단순히 전체에서 4목이 만들어진 경우만 체크 **********/
+
+                        count = make4mok1(i, j);
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
+
+                        count = make4mok2(i, j);
+
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok3(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok4(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok5(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok6(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok7(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok8(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok9(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok10(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok11(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok12(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok13(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok14(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok15(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         count = make4mok16(i, j);
 
-                        if (count == 2) open4++;
-                        else if (count == 1) half4++;
-                        else if (count == 0) close4++;
+                        if (count == 2) open3++;
+                        else if (count == 1) half3++;
+                        else if (count == 0) close3++;
 
                         /********** 단순히 전체에서 3목이 만들어진 경우만 체크 **********/
 
                         count = make3mok1(i, j);
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
+
+                        if (count == 2) open2++;
+                        else if (count == 1) half2++;
+                        else if (count == 0) close2++;
 
                         count = make3mok2(i, j);
 
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
+                        if (count == 2) open2++;
+                        else if (count == 1) half2++;
+                        else if (count == 0) close2++;
 
                         count = make3mok3(i, j);
 
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
+                        if (count == 2) open2++;
+                        else if (count == 1) half2++;
+                        else if (count == 0) close2++;
 
                         count = make3mok4(i, j);
 
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
+                        if (count == 2) open2++;
+                        else if (count == 1) half2++;
+                        else if (count == 0) close2++;
 
                         count = make3mok5(i, j);
 
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
+                        if (count == 2) open2++;
+                        else if (count == 1) half2++;
+                        else if (count == 0) close2++;
 
                         count = make3mok6(i, j);
 
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
+                        if (count == 2) open2++;
+                        else if (count == 1) half2++;
+                        else if (count == 0) close2++;
 
                         count = make3mok7(i, j);
 
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
+                        if (count == 2) open2++;
+                        else if (count == 1) half2++;
+                        else if (count == 0) close2++;
 
                         count = make3mok8(i, j);
 
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
+                        if (count == 2) open2++;
+                        else if (count == 1) half2++;
+                        else if (count == 0) close2++;
 
-                        count = make3mok9(i, j);
-
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
-
-                        count = make3mok10(i, j);
-
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
-
-                        count = make3mok11(i, j);
-
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
-
-                        count = make3mok12(i, j);
-
-                        if (count == 2) open3++;
-                        else if (count == 1) half3++;
-                        else if (count == 0) close3++;
 
                         /********** 단순히 전체에서 2목이 만들어진 경우만 체크 **********/
 
                         count = make2mok1(i, j);
 
-                        if (count == 2) open2++;
-                        else if (count == 1) half2++;
-                        else if (count == 0) close2++;
+                        if (count == 2) open1++;
+                        else if (count == 1) half1++;
+                        else if (count == 0) close1++;
 
                         count = make2mok2(i, j);
 
-                        if (count == 2) open2++;
-                        else if (count == 1) half2++;
+                        if (count == 2) open1++;
+                        else if (count == 1) half1++;
                         else if (count == 0) close2++;
 
                         count = make2mok3(i, j);
 
-                        if (count == 2) open2++;
-                        else if (count == 1) half2++;
-                        else if (count == 0) close2++;
+                        if (count == 2) open1++;
+                        else if (count == 1) half1++;
+                        else if (count == 0) close1++;
 
                         count = make2mok4(i, j);
 
-                        if (count == 2) open2++;
-                        else if (count == 1) half2++;
-                        else if (count == 0) close2++;
+                        if (count == 2) open1++;
+                        else if (count == 1) half1++;
+                        else if (count == 0) close1++;
 
                         /********** 바둑돌이 중간에 가까울 수록 가중치를 계산 **********/
                         int middle = edgeCount / 2;
@@ -2514,12 +2872,18 @@ namespace Client
             sum += open4 * 200000;
             sum += half4 * 15000;
             sum += close4 * 1500;
+
             sum += open3 * 4000;
             sum += half3 * 1500;
             sum += close3 * 300;
+
             sum += open2 * 1500;
             sum += half2 * 300;
             sum += close2 * 50;
+
+            sum += open1 * 50;
+            sum += half1 * 10;
+            sum += close1 * 1;
             return sum;
         }
 
