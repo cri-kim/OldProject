@@ -1,4 +1,5 @@
 #include "Server.h"
+
 SOCKET Server::serverSocket;
 WSAData Server::wsaData;
 SOCKADDR_IN Server::serverAddress;
@@ -6,6 +7,18 @@ int Server::nextID;
 vector<Client*> Server::connections;
 Util Server::util;
 
+void Server::rejectClient(Client *client) {
+	char *sent = new char[256];
+	ZeroMemory(sent, 256);
+	sprintf(sent, "%s", "[Reject]");
+	send(client->getClientSocket(), sent, 256, 0);
+}
+void Server::connectClient(Client *client) {
+	char *sent = new char[256];
+	ZeroMemory(sent, 256);
+	sprintf(sent, "%s", "[Connect]");
+	send(client->getClientSocket(), sent, 256, 0);
+}
 void Server::enterClient(Client *client) {
 	char *sent = new char[256];
 	ZeroMemory(sent, 256);
@@ -17,6 +30,37 @@ void Server::fullClient(Client *client) {
 	ZeroMemory(sent, 256);
 	sprintf(sent, "%s", "[Full]");
 	send(client->getClientSocket(), sent, 256, 0);
+}
+void Server::showRank(Client *client) {
+	char *sent = new char[256];
+	if (client->getLose() == 0
+		&& client->getWin() ==0) {
+		ZeroMemory(sent, 256);
+		sprintf(sent, "%s", "[NoData]");
+		send(client->getClientSocket(), sent, 256, 0);
+
+		cout << sent << endl;
+	}
+	else {
+		//send my rank in current user (myRank/allUsersNum)
+		string data = "[Rank]"+ to_string(countMyRank(client))+"/"+to_string(connections.size());
+		ZeroMemory(sent, 256);
+		sprintf(sent, "%s", data.c_str());
+		send(client->getClientSocket(), sent, 256, 0);
+		cout << data << endl;
+	}
+}
+int Server::countMyRank(Client *client) {
+	//get my grade
+	int myGrade = client->getWin() - client->getLose();
+	int myRank = 1; //default
+	for (int i = 0; i < connections.size(); i++) {
+		int tmpGrade = connections[i]->getWin() - connections[i]->getLose();
+		if (myGrade < tmpGrade) {
+			myRank++;
+		}
+	}
+	return myRank;
 }
 void Server::playClient(int roomID) {
 	char *sent = new char[256];
@@ -99,8 +143,33 @@ void Server::ServerThread(Client *client) {
 		if ((size = recv(client->getClientSocket(), received, 256, NULL)) > 0) {
 			string receivedString = string(received);
 			vector<string> tokens = util.getTokens(receivedString, ']');
+			vector<string> clientTokens = util.getTokens(receivedString, ']');
 
-			if (receivedString.find("[Enter]") != -1) {
+			if (receivedString.find("[Connect]") != -1) {
+				cout << "들어옴" << endl;
+				string customID = clientTokens[1];
+				int customInt = atoi(customID.c_str());
+				
+				boolean usable = true;
+
+				for (int i = 0; i < connections.size(); i++) {
+					/*  check duplication custom ID */
+					if (connections[i]->getCustomID() == customInt) {
+						/* you can't use this ID */
+						usable = false;
+						rejectClient(client);
+						break;
+					}
+				}
+				if (usable) {
+					cout << "클라이언트 [ " << customID << "]: 접속" << endl;
+					/* you can use the ID*/
+					client->setCustomID(customInt);
+					connectClient(client);
+
+				}
+			}
+			else if (receivedString.find("[Enter]") != -1) {
 				string roomID = tokens[1];
 				int roomInt = atoi(roomID.c_str());
 				int clientCount = clientCountInRoom(roomInt);
@@ -131,6 +200,20 @@ void Server::ServerThread(Client *client) {
 				int roomInt = atoi(roomID.c_str());
 
 				playClient(client->getRoomID());
+			}
+
+			else if (receivedString.find("[ShowRank]") != -1) {
+				showRank(client);
+			}
+
+			//add win/lose
+			if (receivedString.find("[Win]") != -1) {
+				cout << "["<<connections[client->getClientID()] << "] : 클라이언트 승리" << endl;
+				client->setWin((client->getWin())+1);
+			}
+			if (receivedString.find("[Lose]") != -1) {
+				cout << "["<< connections[client->getClientID()] << "] : 클라이언트 패배" << endl;
+				client->setLose((client->getLose()) + 1);
 			}
 		}
 		else {

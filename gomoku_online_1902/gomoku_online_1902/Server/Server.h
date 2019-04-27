@@ -24,7 +24,12 @@ public:
 	static void exitClient(int roomID);
 	static void putClient(int roomID, int x, int y);
 	static void fullClient(Client *client);
+	static void showRank(Client *client);
 	static void enterClient(Client *client);
+	static void rejectClient(Client *client);
+	static void connectClient(Client *client);
 	static void ServerThread(Client *client);
+
+	static int countMyRank(Client *client);
 };
 #endif // !GOMOKU_SERVER_H

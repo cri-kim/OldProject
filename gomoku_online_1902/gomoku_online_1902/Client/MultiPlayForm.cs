@@ -88,18 +88,22 @@ namespace Client
             threading = false;
             board = new Horse[edgeCount, edgeCount];
             nowTurn = false;
+
+            /* 방접속 허가 */
+            this.roomTextBox.Enabled = false;
+            this.enterButton.Enabled = false;
         }
 
         private void enterButton_Click(object sender, EventArgs e)
         {
-            tcpClient = new TcpClient();
+          /*  tcpClient = new TcpClient();
             tcpClient.Connect("127.0.0.1", 9876);
             stream = tcpClient.GetStream();
 
             thread = new Thread(new ThreadStart(read));
             thread.Start();
             threading = true;
-
+            */
             /* 방 접속 진행하기 */
             string message = "[Enter]";
             byte[] buf = Encoding.ASCII.GetBytes(message + this.roomTextBox.Text);
@@ -114,7 +118,42 @@ namespace Client
                 byte[] buf = new byte[1024];
                 int bufBytes = stream.Read(buf, 0, buf.Length);
                 string message = Encoding.ASCII.GetString(buf, 0, bufBytes);
-                /* 접속 성공 (메시지: [Enter]) */
+
+                if (message.Contains("[Rank]"))
+                {
+                    string getMyRank = message.Split(']')[1];
+                    
+                    this.myRankText.Text = getMyRank.ToString();
+                }
+                if (message.Contains("[NoData]"))
+                {
+                    this.myRankText.Text = "No Data";
+                }
+
+                /* 접속 성공 (메시지 : [Connect] */
+                if (message.Contains("[Connect]"))
+                {
+                    this.status.Text = "[" + this.clientTextBox.Text + "] 으로 접속하였습니다.";
+                    /* 계정 중복 생성 불가 */
+                    this.clientTextBox.Enabled = false;
+                    this.connectButton.Enabled = false;
+
+                    /* 방접속 허가 */
+                    this.roomTextBox.Enabled = true;
+                    this.enterButton.Enabled = true;
+
+                    /* 랭킹보기 허가*/
+                    this.showRankButton.Enabled = true;
+                }
+                /* reject to use the Client ID*/
+                if(message.Contains("[Reject]"))
+                {
+                    this.status.Text = "[" + this.clientTextBox.Text + "] 아이디는 사용할 수 없습니다.";
+
+                    closeNetwork();
+                }
+
+                /* 방 접속 성공 (메시지: [Enter]) */
                 if (message.Contains("[Enter]"))
                 {
                     this.status.Text = "[" + this.roomTextBox.Text + "]번 방에 접속했습니다.";
@@ -184,6 +223,10 @@ namespace Client
                     }
                     if (judge(enemyPlayer))
                     {
+                        message = "[Lose]";
+                        buf = Encoding.ASCII.GetBytes(message);
+                        stream.Write(buf, 0, buf.Length);
+
                         status.Text = "패배했습니다.";
                         playing = false;
                         playButton.Text = "재시작";
@@ -236,6 +279,10 @@ namespace Client
             /* 판정 처리하기 */
             if (judge(nowPlayer))
             {
+                message = "[Win]";
+                buf = Encoding.ASCII.GetBytes(message);
+                stream.Write(buf, 0, buf.Length);
+
                 status.Text = "승리했습니다.";
                 playing = false;
                 playButton.Text = "재시작";
@@ -282,9 +329,27 @@ namespace Client
             }
         }
 
-        private void boardPicture_Click(object sender, EventArgs e)
+        private void connectButton_Click(object sender, EventArgs e)
         {
+            tcpClient = new TcpClient();
+            tcpClient.Connect("127.0.0.1", 9876);
+            stream = tcpClient.GetStream();
 
+            thread = new Thread(new ThreadStart(read));
+            thread.Start();
+            threading = true;
+            /* 방 접속 진행하기 */
+            string message = "[Connect]";
+            byte[] buf = Encoding.ASCII.GetBytes(message + this.clientTextBox.Text);
+            stream.Write(buf, 0, buf.Length);
+        }
+
+        private void showRankButton_Click(object sender, EventArgs e)
+        {
+            string message = "[ShowRank]";
+            byte[] buf = Encoding.ASCII.GetBytes(message);
+            stream.Write(buf, 0, buf.Length);
+            this.myRankText.Visible = true;
         }
     }
 }

@@ -37,7 +37,8 @@
             // boardPicture
             // 
             this.boardPicture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(216)))));
-            this.boardPicture.Location = new System.Drawing.Point(14, 25);
+            this.boardPicture.Location = new System.Drawing.Point(16, 31);
+            this.boardPicture.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.boardPicture.Name = "boardPicture";
             this.boardPicture.Size = new System.Drawing.Size(571, 625);
             this.boardPicture.TabIndex = 0;
@@ -47,9 +48,10 @@
             // 
             // playButton
             // 
-            this.playButton.Location = new System.Drawing.Point(677, 25);
+            this.playButton.Location = new System.Drawing.Point(774, 31);
+            this.playButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(114, 40);
+            this.playButton.Size = new System.Drawing.Size(130, 50);
             this.playButton.TabIndex = 1;
             this.playButton.Text = "게임시작";
             this.playButton.UseVisualStyleBackColor = true;
@@ -57,21 +59,22 @@
             // 
             // status
             // 
-            this.status.Location = new System.Drawing.Point(636, 78);
+            this.status.Location = new System.Drawing.Point(727, 98);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(199, 19);
+            this.status.Size = new System.Drawing.Size(227, 24);
             this.status.TabIndex = 2;
             this.status.Text = "게임을 시작해주세요.";
             this.status.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // SinglePlayForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 541);
+            this.ClientSize = new System.Drawing.Size(987, 676);
             this.Controls.Add(this.status);
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.boardPicture);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SinglePlayForm";
             this.Text = "SinglePlayForm";
             ((System.ComponentModel.ISupportInitialize)(this.boardPicture)).EndInit();
