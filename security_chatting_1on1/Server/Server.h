@@ -6,6 +6,9 @@
 #include <iostream>
 using namespace std;
 #include <Winsock.h>
+/* openssl Ãß°¡ */
+#include <openssl/ssl.h>
+#include <openssl/err.h>
 #include <vector>
 #include "Util.h"
 #include "Client.h"
@@ -22,9 +25,9 @@ public:
 	static void start();
 	static int clientCountInRoom(int roomID);
 	static void exitClient(int roomID);
-	static void putClient(int roomID, string content);
-	static void fullClient(Client *client);
-	static void enterClient(Client *client);
+	static void putClient(int roomID, string content, SSL *ssl);
+	static void enterClient(Client *client, SSL *ssl);
 	static void ServerThread(Client *client);
+	static void close();
 };
 #endif // !GOMOKU_SERVER_H
