@@ -1,17 +1,27 @@
-from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
-from board.serializers import UserSerializer, GroupSerializer
+from .models import Board
+from rest_framework.decorators import api_view
+from .serializers import BoardSerializer, BoardDetailSerializer, BoardCreateSerializer,BoardUpdateSerializer
+from rest_framework.generics import ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView, CreateAPIView
 
-class UserViewset(viewsets.ModelViewSet):
-    """
-    comment
-    """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
+class getBoardList(ListAPIView):
+    queryset = Board.objects.all().order_by('-add_dtm')
+    serializer_class = BoardSerializer
 
-class GroupViewset(viewsets.ModelViewSet):
-    """
-    comment
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+class getBoardDetail(RetrieveAPIView):
+    lookup_field = 'board_id'
+    queryset = Board.objects.all()
+    serializer_class = BoardDetailSerializer
+
+class modBoard(UpdateAPIView):
+    lookup_field = 'board_id'
+    queryset = Board.objects.all()
+    serializer_class = BoardUpdateSerializer
+
+class delBoard(DestroyAPIView):
+    lookup_field = 'board_id'
+    queryset = Board.objects.all()
+    serializer_class = BoardSerializer
+
+class addBoard(CreateAPIView):
+    queryset = Board.objects.all()
+    serializer_class = BoardCreateSerializer

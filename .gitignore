@@ -5,3 +5,12 @@ myvenv
 db.sqlite3
 /static
 .DS_Store
+colors.scheme.xml
+debugger.xml
+editor.xml
+filetypes.xml
+ide.general.xml
+jdk.table.xml
+project.default.xml
+updates.xml
+wsl.distributions.xml
