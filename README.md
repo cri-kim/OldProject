@@ -1,9 +1,9 @@
 # prography_6th_django_kimsujung
--기술스택
- - python
- - Django
+- 기술스택
+ - python 3.8.2
+ - Django 3.0.3
  - djangorestframework
--요구사항
+- 요구사항
   - AS-IS 
     - django-rest-framework 사용
     - 리스트 조회(최신날짜 기준)
@@ -15,5 +15,6 @@
     - 기타 기능
       - file upload/mod
       - 페이징 처리
--API 문서
+- API 문서
+ 
 
