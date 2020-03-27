@@ -1,8 +1,8 @@
 # prography_6th_django_kimsujung
 - 기술스택
- - python 3.8.2
- - Django 3.0.3
- - djangorestframework
+  - python 3.8.2
+  - Django 3.0.3
+  - djangorestframework
 - 요구사항
   - AS-IS 
     - django-rest-framework 사용
