@@ -10,7 +10,7 @@ C#을 통해 개발한 육목게임입니다.
 파이썬 크롤링 학습내용입니다.  
 <a href="https://www.python.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a>
 
-3. SimpleDJangoApiStudy
+3. SimpleDJangoApiStudy  
 Django를 학습하며 간단한 REST API 작성을 진행한 학습내용입니다.  
 <a href="https://www.djangoproject.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/django/django-original.svg" alt="django" width="40" height="40"/> </a>
 <a href="https://www.python.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a>
