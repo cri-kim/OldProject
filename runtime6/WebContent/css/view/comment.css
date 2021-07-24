@@ -1,0 +1,27 @@
+@CHARSET "utf-8";
+
+.comment-ul {
+	height : 50px;
+}
+.comment-li {
+	display : inline;
+}
+
+#inputComment ul li span {
+	vertical-align : top;
+}
+.wide {
+	width : 60%;
+}
+.wide textarea {
+	width : inherit;
+}
+img.button {
+	width : 70px;
+	height: 36px;
+}
+img.button-small {
+	width : 16px;
+	cursor : pointer;
+	margin : 5px
+}

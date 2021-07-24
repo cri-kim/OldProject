@@ -1,0 +1,300 @@
+@CHARSET "EUC-KR";
+
+/* boardcss_list 에서 사용되는 글 등록 버튼 테이블 크기 */
+#boardcss_list_add_button_table {
+   align: left;
+   width: 920px;
+   height:30px;
+   /* margin: 0 auto 15px;  */
+   padding: 0px 30x 0px 30px;
+   margin-left:680px;
+   /*    text-align:right; */
+   /*position: relative; background: #bddcff; font-weight: bold;*/ 
+}
+
+
+
+
+/* 화면에 보여지는 글 등록 버튼 */
+#boardcss_list_add_button_table .newPost { 
+   font-weight: bold;
+   cursor: pointer; 
+   width:50px;
+   height:26px;
+   border: 1px solid #bebebe; 
+   text-align: center; 
+   font-family:'Nanum Gothic';
+/*    float:left; */
+    }
+   
+/* 화면에 보여지는 글 목록 버튼 */   
+   #boardcss_list_add_button_table .relist { 
+/*    float:left; */
+margin-left:200px;
+   cursor: pointer;
+   width:50px;
+   height:26px;    
+   border: 1px solid #bebebe;
+   text-align:  center; 
+   font-family:'Nanum Gothic';
+   font-weight: bold;
+    }
+    /* 화면에 보여지는 글 등록 버튼 */
+#boardcss_list_add_button_table1 {
+   align: left;
+   width: 940px;
+   padding: 0px 30x 0px 30px;
+}
+    
+.newPost1 {
+   font-weight: bold;
+   width:50px;
+   height:25px;
+   cursor: pointer; 
+   border: 1px solid #bebebe; 
+   text-align: center; 
+   font-family:'Nanum Gothic';
+/*    float:left; */
+    }
+   
+/* 화면에 보여지는 글 목록 버튼 */   
+.relist1 { 
+   font-weight: bold;
+   width:50px;
+   height:25px;
+   margin-left:910px;
+   cursor: pointer; 
+   border: 1px solid #bebebe;
+   aligh:right; 
+   text: bold;
+   text-align:  center; 
+   font-family:'Nanum Gothic';
+    }
+#boardcss_list_add_button_table .newPost a { 
+   color: #ffffff; 
+   }
+
+/* 글 등록 버튼과 글 목록이 겹치지 않게 만들어준 아무것도 아닌것 */
+#boardcss_list_add_button_table .boardcss_list_add_button ul { width: 100%; overflow: hidden; height: 10px;}
+
+
+/* boardcss_list 에서 사용하는 글 목록 테이블 크기*/
+.boardcss_list_table {
+   margin-left:40px;
+   background:#ffffff; /* 자주색 */
+   /* text-align:center; */
+   /* align:center; */
+   width: 90%; 
+   
+   }
+
+/* 화면에 보여지는 글 목록 테이블 */
+.list_table {
+   width: 100%;
+   background:none;
+   border: 1px solid #bebebe; 
+   padding: 0 0px 0px 0; /* 0 오른쪽 아래 */
+   BORDER-TOP: #00005D 3px solid;
+    font-size: 13px;
+   
+   }
+
+/* 화면에 보여지는 caption */
+.list_table caption {
+   display: none; 
+   }
+
+/* list_table 에서 사용되는 thead */
+.list_table thead th {
+   text-align: center; 
+   border-top: 1px solid #e5e5e5; 
+   border-bottom: 1px solid #e5e5e5; 
+   padding: 8px 0; 
+   background: #faf9fa; 
+   }
+
+/* list_table 에서 사용되는 tbody */
+.list_table tbody td { 
+   text-align: center;  
+   border-bottom: 1px solid #e5e5e5; 
+   padding: 5px 0; 
+   }
+
+/* 자유게시판 이름 */
+.freeboard_name{
+/*    background:#CCFF33; */
+   padding: 0px 0px 0px 100px;
+   margine-left:100px;
+   font : bold 30px "Calibri", Arial;
+   width : 90%;
+}
+
+.boardcss_list_add_button{
+   background:#CCFF33;
+   
+}
+
+.tfoot{
+   text-align=center;
+}
+
+.pgarea{
+   algin:center;
+}
+
+/* 
+detail에서 사용하는 글 목록 테이블 크기
+.detail{
+   margin-left:40px;
+   background:#ffffff; 자주색
+   text-align:center;
+   align:center;
+   width: 90%; 
+   }
+
+화면에 보여지는 글 목록 테이블
+.detail_table {
+   width: 100%; 
+   }
+ */
+ 
+ 
+ /* 등록 화면에 보여지는 글 목록 버튼 */   
+   #boardcss_list_add_button_table .list { 
+   cursor: pointer; 
+   border: 1px solid #bebebe; 
+   position: absolute; 
+   right: 650px; 
+   top: 580px; 
+   width: 85px; 
+   padding: 6px 0 6px; 
+   text-align: center; 
+   font-weight: bold; }
+   
+   
+   /* 등록 화면에 보여지는 글 수정 버튼 */   
+   #boardcss_list_add_button_table .update { 
+   cursor: pointer; 
+   border: 1px solid #bebebe; 
+   width: 50px; 
+   padding: 6px 0 6px; 
+   text-align: center; 
+   font-weight: bold; }
+   
+   
+   /* 등록 화면에 보여지는 글 목록 버튼 */   
+   #boardcss_list_add_button_table .insert { 
+   cursor: pointer; 
+   border: 1px solid #bebebe; 
+   position: absolute; 
+   right: 650px; 
+   top: 580px; 
+   width: 85px; 
+   padding: 6px 0 6px; 
+   text-align: center; 
+   font-weight: bold; }
+   
+/*------------------------- footer1 -------------------------*/
+.footer1 {
+/*    background:url(../images/bg-mid-1.png) repeat-y left top; */
+   width:1100px;
+   text-align:center;
+   align:center;
+   padding:0 0 16px;
+   margin-left:40px;
+}
+.footer1 div {
+/*    background:url(../images/bg-shadow.png) no-repeat center bottom; */
+   text-align:center;
+   padding:0 0 8px;
+}
+.footer1 div div {
+/*    background:none #fff; */
+   text-align:center;
+   height:47px;
+   padding:0;
+}
+.footer1 div div ul {
+   float:left;
+   list-style:none;
+   margin:10px 135px 0 35px;
+   overflow:hidden;
+   padding:0;
+}
+.footer1 div div ul li:first-child {
+   background:none;
+   margin:0;
+   padding:0 8px 0 0;
+}
+.footer1 div div ul li {
+/*    background:url(../images/border-footer1-nav.png) no-repeat left 8px; */
+   float:left;
+   padding:0 8px;
+}
+.footer1 div div ul li a {
+   color:#246ea5;
+   font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+   font-size:12px;
+   text-decoration:none;
+}
+.footer1 div div ul li a:hover {
+   text-decoration:none;
+}
+.footer1 div div p {
+   color:#8C8C8C;
+   float:left;
+   font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+   font-size:12px;
+   line-height:16px;
+/*    margin:15px 0 0; */
+   margin-right:100px;
+   
+}
+.footer1 div div div.connect {
+   float:left;
+   height:auto;
+   margin:13px 0 0 65px;
+   overflow:hidden;
+}
+.footer1 div div div.connect1 {
+   color:#8C8C8C;
+   font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+   font-size:12px;
+   line-height:16px;
+   
+   
+}
+.footer1 div div div.connect1 a#twitter {
+   background:url(../../images/icons.png) no-repeat;
+   display:block;
+   float:left;
+   height:18px;
+   text-indent:-99999px;
+   width:23px;
+}
+.footer1 div div div.connect1 a#fb {
+   background:url(../../images/icons.png) no-repeat 0 -19px;
+   display:block;
+   float:left;
+   height:19px;
+   margin:0 37px 0px 44px;
+   text-indent:-99999px;
+   width:19px;
+}
+.footer1 div div div.connect1 a#googleplus {
+   background:url(../../images/icons.png) no-repeat 0 -59px;
+   display:block;
+   float:left;
+   height:19px;
+   margin:0 37px 0 44px;
+   text-indent:-99999px;
+   width:19px;
+}
+.footer1 div div div.connect1 a#vimeo {
+   background:url(../../images/icons.png) no-repeat 0 -39px;
+   display:block;
+   float:left;
+   height:19px;
+   text-indent:-99999px;
+   width:22px;
+}
