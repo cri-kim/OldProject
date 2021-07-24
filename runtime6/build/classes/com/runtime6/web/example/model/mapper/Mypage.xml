@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<mapper namespace="com.runtime6.web.example.model.mapper.Mypage">
+<!--관리자 회원리스트  -->
+<select id="getMypageUserList" parameterType="JoinParam" resultType="Join">		
+	SELECT T.*
+	 FROM (SELECT ROW_NUMBER() OVER(ORDER BY TO_NUMBER(enabled) DESC)  AS RNUM,
+				   CID AS cid
+					,NAME AS name
+					,CELL_PHONE AS cellPhone
+					,EMAIL AS email
+					,IDTR AS idtr
+					,SEX AS sex
+					,BIRTH AS brith
+					,ADDRESS AS address
+					,BANK_NAME AS bank_name
+					,BANK_NUM AS bank_num	
+					,BUSS_NUM AS buss_num
+					,ENABLED AS enabled
+					,F_NO AS f_no		
+		FROM USERS
+		WHERE CID !='000000') T		
+		WHERE T.RNUM <![CDATA[>=]]> #{fromRowNum} AND T.RNUM <![CDATA[<=]]> #{toRowNum}
+</select>
+
+
+	<select id="getCountMypageUserList" parameterType="JoinParam" resultType="int">
+			SELECT COUNT(*) AS totRowCnt
+		    FROM USERS
+	</select>
+	
+	<update id="stopForcedUser" parameterType="JoinParam">
+		UPDATE USERS SET
+		ENABLED= #{enabled}
+		WHERE CID=#{cid}
+	</update>
+	
+	
+	<!--개인 회원정보  -->
+		
+	<select id="getMyinfor" parameterType="JoinParam" resultType="Join">
+		SELECT   CID AS cid
+					,NAME AS name
+					,CELL_PHONE AS cellPhone
+					,EMAIL AS email
+					,IDTR AS idtr
+					,SEX AS sex
+					,BIRTH AS brith
+					,ADDRESS AS address
+					,BANK_NAME AS bank_name
+					,BANK_NUM AS bank_num
+					,BUSS_NUM AS buss_num
+					,F_NO AS f_no						
+		FROM USERS
+		WHERE CID=#{cid}
+	</select>
+	
+	<update id="updateUserinfor" parameterType="JoinParam">
+		UPDATE USERS SET
+		EMAIL = #{email}
+		, CELL_PHONE= #{cellPhone}
+		, ADDRESS = #{address}
+		WHERE CID = #{cid}
+	</update>
+	
+	<update id="updateProviderinfor" parameterType="JoinParam">
+		UPDATE USERS SET
+		EMAIL = #{email}
+		, CELL_PHONE= #{cellPhone}
+		, ADDRESS = #{address}
+		, BANK_NAME = #{bank_name}
+		, BANK_NUM = #{bank_num}
+		, BUSS_NUM= #{buss_num}
+		WHERE CID = #{cid}
+	</update>
+	
+	<update id="stopUser" parameterType="JoinParam">
+		UPDATE USERS SET
+		ENABLED= #{enabled}
+		WHERE CID=#{cid}
+	</update>
+	
+	
+	
+	
+<!-- 	구매리스트-->	
+<select id="getBuyList" parameterType="JoinParam" resultType="Join">		
+	SELECT T.*
+	 FROM (SELECT ROW_NUMBER() OVER(ORDER BY TO_NUMBER(p_id) DESC)  AS RNUM,
+				  A.P_ID AS p_id
+				  ,A.CID AS cid
+				  ,TO_CHAR(A.P_DTTM, 'YYYY-MM-DD') AS p_dttm
+				  ,A.VENDER_ID AS vender_id
+				  ,A.ITEM_NUM AS item_num
+				  ,A.ITEM_CHARGE AS item_charge
+				  ,A.TOTAL_CHARGE AS total_charge
+				  ,A.ITEM_NAME AS item_name
+				  ,A.D_ID AS d_id
+				  ,A.ITEM_F_NO AS item_f_no	
+				   FROM PAYMENT A 
+          		  WHERE A.CID=#{loginUserId}) T		
+		WHERE T.RNUM <![CDATA[>=]]> #{fromRowNum} AND T.RNUM <![CDATA[<=]]> #{toRowNum}
+</select>
+
+	<select id="getCountBuyList" parameterType="JoinParam" resultType="int">
+			SELECT COUNT(*) AS totRowCnt
+		    FROM PAYMENT
+		    WHERE CID=#{loginUserId}
+	</select>
+	
+	<!-- 	판매리스트-->	
+<select id="getSellList" parameterType="JoinParam" resultType="Join">		
+	SELECT T.*
+	 FROM (SELECT ROW_NUMBER() OVER(ORDER BY TO_NUMBER(p_id) DESC)  AS RNUM,
+				  A.P_ID AS p_id
+				  ,A.CID AS cid
+				  ,TO_CHAR(A.P_DTTM, 'YYYY-MM-DD') AS p_dttm
+				  ,A.VENDER_ID AS vender_id
+				  ,A.ITEM_NUM AS item_num
+				  ,A.ITEM_CHARGE AS item_charge
+				  ,A.TOTAL_CHARGE AS total_charge
+				  ,A.ITEM_NAME AS item_name
+				  ,A.D_ID AS d_id
+				  ,A.ITEM_F_NO AS item_f_no
+				   FROM PAYMENT A 
+          		  WHERE A.VENDER_ID=#{loginUserId}) T		
+		WHERE T.RNUM <![CDATA[>=]]> #{fromRowNum} AND T.RNUM <![CDATA[<=]]> #{toRowNum}
+</select>
+
+	<select id="getCountSellList" parameterType="JoinParam" resultType="int">
+			SELECT COUNT(*) AS totRowCnt
+		    FROM PAYMENT
+		    WHERE VENDER_ID=#{loginUserId}
+	</select>
+</mapper>

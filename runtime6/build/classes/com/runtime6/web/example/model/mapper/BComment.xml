@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<mapper namespace="com.runtime6.web.example.model.mapper.BComment">
+	<select id="getBCommentList" parameterType="BCommentParam" resultType="BComment">
+		  SELECT ITEM_NO AS item_no
+				,CMT_NUM AS cmt_num
+				,COMMENTS AS comments
+				,CID AS cid
+				,TO_CHAR(CRT_DTTM,'YYYY-MM-DD') AS crt_dttm
+				,CRT_CID AS crt_cid
+			    ,TO_CHAR(UPD_DTTM,'YYYY-MM-DD') AS upd_dttm
+				,UPD_CID AS upd_cid
+				FROM BUSINESS_COMMENTS
+				WHERE ITEM_NO = #{item_no}
+				ORDER BY cmt_num ASC			
+	</select>
+	
+	<delete id="deleteBCommentByItem_no" parameterType="java.lang.String"	>
+		DELETE FROM BUSINESS_COMMENTS WHERE ITEM_NO = #{item_no}
+	</delete>
+	
+	<delete id="deleteBComment" parameterType="java.lang.String"	>
+		DELETE FROM BUSINESS_COMMENTS WHERE CMT_NUM = #{cmt_num}
+	</delete>
+	
+	<update id="updateBComment" parameterType="BComment">
+		UPDATE BUSINESS_COMMENTS
+		 SET COMMENTS = #{comments}
+		 	,UPD_DTTM = SYSDATE
+		 	,UPD_CID = #{upd_cid}
+		 	WHERE CMT_NUM = #{cmt_Num}
+	</update>
+	
+	<insert id="insertBComment" parameterType="BComment">
+		INSERT INTO BUSINESS_COMMENTS(
+				ITEM_NO
+				,CMT_NUM
+				,COMMENTS
+				,CID
+				,CRT_DTTM
+				,CRT_CID
+		)
+		VALUES(
+			#{item_no}
+			,BUSI_COM.NEXTVAL
+			,#{comments}
+			,#{cid}
+			,SYSDATE
+			,#{crt_cid}
+		)
+	</insert>
+	
+</mapper>

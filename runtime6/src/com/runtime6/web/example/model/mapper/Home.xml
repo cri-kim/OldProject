@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<mapper namespace="com.runtime6.web.example.model.mapper.Home">
+	<sql id="selectHomeSql">
+		     A.ITEM_NO AS item_no
+			,A.ITEM_NAME AS item_name
+			,A.ITEM_CHARGE AS item_charge
+			,A.ITEM_TYPE AS item_type
+			,TO_CHAR(A.FINAL_DATE, 'YYYY-MM-DD') AS final_date
+			,TO_CHAR(A.START_DATE, 'YYYY-MM-DD') AS start_date
+			,A.REMAINDER AS remainder
+			,A.VENDER_ID AS vender_id
+			,A.MAXIMUM AS maximum
+			,A.MINIMUM AS minimum
+			,A.ITEM_F_NO AS item_f_no
+			,A.CONTENT AS content
+			,B.IMG_NAME AS img_name
+			,B.IMG_PATH AS img_path
+			,C.IDTR AS idtr
+	</sql>
+	
+	<sql id="fromHomeSql">
+		FROM BUSINESS A INNER JOIN USERS C ON A.VENDER_ID = C.CID
+            LEFT OUTER JOIN BUSINESS_FILE B ON B.ITEM_F_NO=A.ITEM_F_NO
+	</sql>
+
+	<select id="getHomeList" parameterType="BusinessParam" resultType="Business">
+		 SELECT T.*
+		 FROM (SELECT ROW_NUMBER() OVER( ORDER BY (MAXIMUM - REMAINDER) DESC) AS RNUM,
+			 <include refid="com.runtime6.web.example.model.mapper.Home.selectHomeSql"/>
+			 <include refid="com.runtime6.web.example.model.mapper.Home.fromHomeSql"/>
+			 WHERE REMAINDER != 0
+			) T
+		WHERE T.RNUM <![CDATA[>=]]>1 AND T.RNUM <![CDATA[<=]]> 3
+	</select>
+	
+	<select id="getHomeList2" parameterType="BusinessParam" resultType="Business">
+		 SELECT T.*
+		 FROM (SELECT ROW_NUMBER() OVER( ORDER BY START_DATE DESC) AS RNUM,
+			 <include refid="com.runtime6.web.example.model.mapper.Home.selectHomeSql"/>
+			 <include refid="com.runtime6.web.example.model.mapper.Home.fromHomeSql"/>
+			) T
+		WHERE T.RNUM <![CDATA[>=]]>1 AND T.RNUM <![CDATA[<=]]> 3
+	</select>
+	
+	<select id="getHome" parameterType="BusinessParam" resultType="Business">
+		SELECT <include refid="com.runtime6.web.example.model.mapper.Home.selectHomeSql"/>
+			 		<include refid="com.runtime6.web.example.model.mapper.Home.fromHomeSql"/>
+		WHERE A.ITEM_NO = #{item_no}
+	</select>
+</mapper>

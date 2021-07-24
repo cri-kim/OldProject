@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<mapper namespace="com.runtime6.web.example.model.mapper.Comment">
+	<select id="getCommentList" parameterType="CommentParam" resultType="Comment">
+		  SELECT b_id AS fb_id
+				,cmt_num AS CMT_NUM
+				,comments AS comments
+				,cid AS cid
+				,crt_dttm AS crt_Dttm
+				,crt_cid AS crt_Cid
+				,upd_dttm AS upd_dttm
+				,upd_cid AS upd_Cid
+				FROM COMMENTS
+				WHERE b_id = #{fb_id}
+				ORDER BY cmt_num ASC
+	</select>
+	
+	<delete id="deleteCommentByB_id" parameterType="java.lang.String"	>
+		DELETE FROM COMMENTS WHERE B_ID = #{fb_id}
+	</delete>
+	
+	<delete id="deleteComment" parameterType="java.lang.String"	>
+		DELETE FROM COMMENTS WHERE CMT_NUM = #{cmt_Num}
+	</delete>
+	
+	<update id="updateComment" parameterType="Comment">
+		UPDATE COMMENTS
+		 SET COMMENTS = #{comments}
+		 	,UPD_DTTM = SYSDATE
+		 	,UPD_CID = #{upd_Cid}
+		 	WHERE CMT_NUM = #{cmt_Num}
+	</update>
+	
+	<insert id="insertComment" parameterType="Comment">
+		INSERT INTO COMMENTS(
+				B_ID
+				,CMT_NUM
+				,COMMENTS
+				,CID
+				,CRT_DTTM
+				,CRT_CID
+		)
+		VALUES(
+			#{fb_id}
+			,COM.NEXTVAL
+			,#{comments}
+			,#{cid}
+			,SYSDATE
+			,#{crt_Cid}
+		)
+	</insert>
+	
+</mapper>

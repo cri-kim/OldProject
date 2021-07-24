@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<mapper namespace="com.runtime6.web.example.model.mapper.Qna">
+
+	<sql id="selectPostSql">
+		      B.q_no AS q_no
+			  ,B.title As title
+			  ,B.content As content
+			  ,C.name As name
+			 ,C.cid As userId
+			 ,B.enabled As enabled
+			  ,TO_CHAR(B.q_dttm, 'YYYY-MM-DD') AS q_dttm
+	</sql>
+	
+	<sql id="fromPostSql">
+		 from qtable B inner join users C on B.u_id = C.cid
+
+	</sql>
+	
+	<select id="getCountPostList" parameterType="QnaPostParam" resultType="int">
+			SELECT COUNT(*) AS totRowCnt
+		    <include refid="com.runtime6.web.example.model.mapper.Qna.fromPostSql"/>
+		    <where>
+					<if test="searchCondition != null">
+						<foreach collection="searchCondition" item="condition" separator="OR">
+							<choose>
+								<when test="condition == &quot;title&quot;" >
+									B.TITLE LIKE '%' || #{searchText} || '%'
+								</when>
+								<when test="condition == &quot;content&quot;" >
+									B.CONTENT LIKE '%' || #{searchText} || '%' 
+								</when>
+								<when test="condition == &quot;cid&quot;" >
+									C.CID = #{searchText}
+								</when>
+							</choose>
+						</foreach>
+					</if>
+				</where>
+	</select>
+
+ 
+
+
+	<select id="getPostList" parameterType="QnaPostParam" resultType="QnaPost">
+		SELECT T.*
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY TO_NUMBER(q_no) DESC) AS RNUM,
+		        <include refid="com.runtime6.web.example.model.mapper.Qna.selectPostSql"/>
+		        <include refid="com.runtime6.web.example.model.mapper.Qna.fromPostSql"/>
+				<where>
+					<if test="searchCondition != null">
+						<foreach collection="searchCondition" item="condition" separator="OR">
+							<choose>
+								<when test="condition == &quot;title&quot;" >
+									B.TITLE LIKE '%' || #{searchText} || '%'
+								</when>
+								<when test="condition == &quot;content&quot;" >
+									B.CONTENT LIKE '%' || #{searchText} || '%' 
+								</when>
+								<when test="condition == &quot;cid&quot;" >
+									C.CID = #{searchText}
+								</when>
+							</choose>
+						</foreach>
+					</if>
+				</where>) T
+		 WHERE T.RNUM <![CDATA[>=]]> #{fromRowNum} AND T.RNUM <![CDATA[<=]]> #{toRowNum}
+	</select>
+	
+	<select id="getPost" parameterType="QnaPostParam" resultType="QnaPost">
+		SELECT <include refid="com.runtime6.web.example.model.mapper.Qna.selectPostSql"/>
+		       <include refid="com.runtime6.web.example.model.mapper.Qna.fromPostSql"/>
+		WHERE B.q_no = #{q_no}
+	</select>
+
+	<delete id="deletePost" parameterType="QnaPostParam">
+		DELETE FROM QTABLE where q_no = #{q_no} or q_no = #{q_no}-1
+	</delete>
+	<update id="updatePost" parameterType="QnaPostParam">
+		UPDATE QTABLE SET
+		 title =	#{title}
+		, content = #{content}
+		, upd_ymd = sysdate 
+		WHERE q_no = #{q_no}
+	</update>
+	<insert id="insertPost" parameterType="QnaPost">
+		INSERT INTO QTABLE
+		(
+		q_no
+		,TITLE
+		,CONTENT
+		,U_ID
+		,Q_DTTM
+		) 
+		VALUES
+		(
+		Qna.NEXTVAL
+		,#{title}
+		,#{content}
+		,#{userId}
+		,SYSDATE
+		)
+	</insert>
+
+<insert id="replyPost" parameterType="QnaPost">
+		INSERT INTO QTABLE
+		(
+		q_no
+		,TITLE
+		,CONTENT
+		,U_ID
+		,Q_DTTM
+		) 
+		VALUES
+		(
+		#{q_no}
+		,#{title}
+		,#{content}
+		,#{userId}
+		,SYSDATE
+		)
+	</insert>
+<insert id="replyPostenabled" parameterType="QnaPost">                                                            
+ 		UPDATE QTABLE SET
+		enabled=#{enabled}
+		WHERE q_no = #{q_no}
+</insert>
+</mapper>    

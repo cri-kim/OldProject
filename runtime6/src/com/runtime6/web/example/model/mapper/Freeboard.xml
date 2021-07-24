@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<mapper namespace="com.runtime6.web.example.model.mapper.Freeboard">
+
+	<sql id="selectPostSql">
+		      B.fb_id AS fb_id
+			  ,B.fb_title As fb_title
+			  ,B.fb_cont As fb_content
+			  ,C.name As name
+			  ,C.cid As userId
+			  , TO_CHAR(B.fb_write_date,'YYYY-MM-DD') As fb_write_date
+	
+	</sql>
+	
+	<sql id="fromPostSql">
+		 from freeboard B inner join users C on B.fb_u_id = C.cid
+
+	</sql>
+
+ 
+ 
+ 
+	<select id="getCountPostList" parameterType="FB_PostParam" resultType="int">
+			SELECT COUNT(*) AS totRowCnt
+			 <include refid="com.runtime6.web.example.model.mapper.Freeboard.fromPostSql"/>
+				<where>
+					<if test="searchCondition != null">
+						<foreach collection="searchCondition" item="condition" separator="OR">
+							<choose>
+								<when test="condition == &quot;fb_title&quot;" >
+									B.fb_TITLE LIKE '%' || #{searchText} || '%'
+								</when>
+								<when test="condition == &quot;fb_content&quot;" >
+									B.fb_CONT LIKE '%' || #{searchText} || '%' 
+								</when>
+								<when test="condition == &quot;cid&quot;" >
+									C.cid = #{searchText}
+								</when>
+							</choose>
+						</foreach>
+					</if>
+				</where>
+		    <!-- <include refid="com.runtime6.web.example.model.mapper.Freeboard.fromPostSql"/> -->
+	</select>
+
+ 
+
+
+	<select id="getPostList" parameterType="FB_PostParam" resultType="FB_Post">
+		SELECT T.*
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY TO_NUMBER(fb_id) DESC) AS RNUM,
+		        <include refid="com.runtime6.web.example.model.mapper.Freeboard.selectPostSql"/>
+		        <include refid="com.runtime6.web.example.model.mapper.Freeboard.fromPostSql"/>
+				<where>
+					<if test="searchCondition != null">
+						<foreach collection="searchCondition" item="condition" separator="OR">
+							<choose>
+								<when test="condition == &quot;fb_title&quot;" >
+									B.fb_TITLE LIKE '%' || #{searchText} || '%'
+								</when>
+								<when test="condition == &quot;fb_content&quot;" >
+									B.fb_CONT LIKE '%' || #{searchText} || '%' 
+								</when>
+								<when test="condition == &quot;cid&quot;" >
+									C.cid = #{searchText}
+								</when>
+							</choose>
+						</foreach>
+					</if>
+				</where>) T
+		 WHERE T.RNUM <![CDATA[>=]]> #{fromRowNum} AND T.RNUM <![CDATA[<=]]> #{toRowNum}
+	</select>
+	
+	<select id="getPost" parameterType="FB_PostParam" resultType="FB_Post">
+		SELECT <include refid="com.runtime6.web.example.model.mapper.Freeboard.selectPostSql"/>
+		       <include refid="com.runtime6.web.example.model.mapper.Freeboard.fromPostSql"/>
+		WHERE B.fb_id = #{fb_id}
+	</select>
+
+	<delete id="deletePost" parameterType="FB_PostParam">
+		DELETE FROM FREEBOARD where fb_id = #{fb_id}
+	</delete>
+	
+	<update id="updatePost" parameterType="FB_PostParam">
+		UPDATE FREEBOARD SET
+		 fb_title =	#{fb_title}
+		, fb_cont = #{fb_content}
+		, fb_uid_dttm = sysdate
+		WHERE fb_id = #{fb_id}
+	</update>
+	
+	<insert id="insertPost" parameterType="FB_Post">
+		INSERT INTO FREEBOARD
+		(
+		fb_id
+		,fb_TITLE
+		,fb_CONT
+		,fb_U_ID
+		,F_ID
+		,fb_write_date
+		)
+		VALUES
+		(
+		FBI.NEXTVAL
+		,#{fb_title}
+		,#{fb_content}
+		,#{userId}
+		,#{fid, jdbcType=NUMERIC}
+		,SYSDATE
+		)
+	</insert>
+
+	
+	<insert id="insertAttachFile" parameterType="FB_Post">
+insert를 하기전에 쿼리를 수행하고 그결과를 resultType으로 keyproperty에 저장해라
+	<selectKey keyProperty="fid" order="BEFORE" resultType="java.lang.String">
+	SELECT FID.NEXTVAL FROM DUAL
+	</selectKey>
+		INSERT INTO ADDFILE
+		(
+		FID
+		,FILENAME
+		,FILEPATH
+		)
+		VALUES
+		(
+		#{fid}
+		,#{filename}
+		,#{filepath}
+		)
+	</insert>
+
+ 
+
+</mapper>    

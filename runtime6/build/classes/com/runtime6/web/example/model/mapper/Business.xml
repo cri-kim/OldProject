@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<mapper namespace="com.runtime6.web.example.model.mapper.Business">
+	<sql id="selectBusinessSql">
+		     A.ITEM_NO AS item_no
+			,A.ITEM_NAME AS item_name
+			,A.ITEM_CHARGE AS item_charge
+			,A.ITEM_TYPE AS item_type
+			,TO_CHAR(A.FINAL_DATE, 'YYYY-MM-DD') AS final_date
+			,TO_CHAR(A.START_DATE, 'YYYY-MM-DD') AS start_date
+			,A.REMAINDER AS remainder
+			,A.VENDER_ID AS vender_id
+			,A.MAXIMUM AS maximum
+			,A.MINIMUM AS minimum
+			,A.ITEM_F_NO AS item_f_no
+			,A.CONTENT AS content
+			,B.IMG_NAME AS img_name
+			,B.IMG_PATH AS img_path
+			,C.IDTR AS idtr
+	</sql>
+	
+	<sql id="fromBusinessSql">
+		FROM BUSINESS A INNER JOIN USERS C ON A.VENDER_ID = C.CID
+            LEFT OUTER JOIN BUSINESS_FILE B ON B.ITEM_F_NO=A.ITEM_F_NO
+	</sql>
+
+	<select id="getBusinessList" parameterType="BusinessParam" resultType="Business">
+		 SELECT T.*
+		 FROM (SELECT ROW_NUMBER() OVER(ORDER BY TO_NUMBER(item_no) DESC) AS RNUM,
+			 <include refid="com.runtime6.web.example.model.mapper.Business.selectBusinessSql"/>
+			 <include refid="com.runtime6.web.example.model.mapper.Business.fromBusinessSql"/>
+			<where>
+					<if test="searchCondition != null ">
+						<foreach collection="searchCondition" item="condition" separator="OR">
+							<choose>
+								<when test="condition == &quot;item_type&quot;" >
+									A.ITEM_TYPE LIKE '%' || #{searchText} || '%'
+								</when>
+								<when test="condition == &quot;item_name&quot;" >
+									A.ITEM_NAME LIKE '%' || #{searchText} || '%'
+								</when>
+								<when test="condition == &quot;item_charge&quot;" >
+									A.ITEM_CHARGE <![CDATA[<=]]>  #{searchText}  
+								</when>
+								<when test="condition == &quot;vender_id&quot;" >
+									A.VENDER_ID = #{searchText}
+								</when>
+							</choose>
+						</foreach>
+					</if>
+				</where>) T
+		WHERE T.RNUM <![CDATA[>=]]> #{fromRowNum} AND T.RNUM <![CDATA[<=]]> #{toRowNum} 	
+	</select>
+	
+	<select id="getBusinessFile" parameterType="java.lang.String" resultType="Business">
+		SELECT ITEM_F_NO AS item_f_no
+					,IMG_NAME AS img_name
+					,IMG_PATH AS img_path
+		FROM BUSINESS_FILE	
+		WHERE ITEM_F_NO = #{item_f_no}		
+	</select>
+	
+	
+	<select id="getCountBusinessList" parameterType="BusinessParam" resultType="int">
+			SELECT COUNT(*) AS totRowCnt
+		    FROM BUSINESS A, USERS C
+			<where>
+			<if test="searchCondition != null ">
+						<foreach collection="searchCondition" item="condition" separator="OR">
+							<choose>
+								<when test="condition == &quot;item_type&quot;" >
+									A.ITEM_TYPE LIKE '%' || #{searchText} || '%'
+								</when>
+								<when test="condition == &quot;item_name&quot;" >
+									A.ITEM_NAME LIKE '%' || #{searchText} || '%'
+								</when>
+								<when test="condition == &quot;item_charge&quot;" >
+									A.ITEM_CHARGE <![CDATA[<=]]>  #{searchText}  
+								</when>
+								<when test="condition == &quot;vender_id&quot;" >
+									A.VENDER_ID = #{searchText}
+								</when>
+							</choose>
+						</foreach>
+				</if>
+				AND A.VENDER_ID=C.CID 
+				</where>
+	</select>
+	
+	<select id="getCountSearchList" parameterType="BusinessParam" resultType="int">
+			SELECT COUNT(*) AS totRowCnt
+		    FROM BUSINESS A, USERS C	
+			<where>
+			<if test="searchCondition != null ">
+						<foreach collection="searchCondition" item="condition" separator="OR">
+							<choose>
+								<when test="condition == &quot;item_type&quot;" >
+									A.ITEM_TYPE LIKE '%' || #{searchText} || '%'
+								</when>
+								<when test="condition == &quot;item_name&quot;" >
+									A.ITEM_NAME LIKE '%' || #{searchText} || '%'
+								</when>
+								<when test="condition == &quot;item_charge&quot;" >
+									A.ITEM_CHARGE <![CDATA[<=]]>  #{searchText}  
+								</when>
+								<when test="condition == &quot;vender_id&quot;" >
+									A.VENDER_ID = #{searchText}
+								</when>
+							</choose>
+						</foreach>
+				</if>
+				AND A.VENDER_ID=C.CID 
+				</where>
+			
+	</select>
+	
+	
+	<select id="getBusiness" parameterType="BusinessParam" resultType="Business">
+		SELECT <include refid="com.runtime6.web.example.model.mapper.Business.selectBusinessSql"/>
+			 		<include refid="com.runtime6.web.example.model.mapper.Business.fromBusinessSql"/>
+		WHERE A.ITEM_NO = #{item_no}
+	</select>
+	
+	
+	<insert id="insertBusiness" parameterType="Business">
+		INSERT INTO BUSINESS
+		(
+		ITEM_NO
+		,ITEM_NAME
+		,CONTENT
+		,ITEM_TYPE
+		,VENDER_ID
+		,ITEM_F_NO
+		,START_DATE
+		,FINAL_DATE
+		,ITEM_CHARGE
+		,MAXIMUM
+		,REMAINDER
+		,MINIMUM
+		)
+		VALUES
+		(
+		ITEM_NO.NEXTVAL
+		,#{item_name}
+		,#{content}
+		,#{item_type}
+		,#{vender_id}
+		,#{item_f_no, jdbcType=NUMERIC}
+		,TRUNC(SYSDATE)
+		,TRUNC(SYSDATE+7)
+		,#{item_charge}
+		,#{maximum}
+		,#{maximum}
+		,#{minimum}
+		)
+	</insert>
+	
+	<insert id="insertBusinessFile" parameterType="Business">
+<!-- insert를 하기전에 쿼리를 수행하고 그결과를 resultType으로 keyproperty에 저장해라 -->
+<!-- 	<selectKey keyProperty="item_f_no" order="BEFORE" resultType="java.lang.String">
+	SELECT ITEM_F_NO.NEXTVAL FROM DUAL
+	</selectKey> -->
+		INSERT INTO BUSINESS_FILE
+		(
+		ITEM_F_NO
+		,IMG_NAME
+		,IMG_PATH
+		,U_ID
+		,U_DTTM
+		)
+		VALUES
+		(
+		#{item_f_no}
+		,#{img_name}
+		,#{img_path}
+		,#{vender_id}
+		,TRUNC(SYSDATE)
+		)
+	</insert>
+	
+	<insert id="insertBasket" parameterType="Basket">
+		INSERT INTO BASKET
+		(
+		CID
+		,ITEM_NAME
+		,ITEM_CHARGE
+		,ITEM_F_NO
+		,VENDER_ID
+		,ITEM_NO
+		,C_DTTM
+		,C_NO
+		)
+		VALUES
+		(
+		#{cid}
+		,#{item_name}
+		,#{item_charge}
+		,#{item_f_no}
+		,#{vender_id}
+		,#{item_no}
+		,TRUNC(SYSDATE)
+		,C_NO.NEXTVAL
+		)
+	
+	</insert>
+	
+	
+	
+	<select id="getUploadFile" parameterType="java.lang.String" resultType="Business">
+		SELECT ITEM_F_NO AS item_f_no
+					,IMG_NAME AS img_name
+					,IMG_PATH AS img_path
+		FROM TEMP_FILE	
+		WHERE ITEM_F_NO = #{item_f_no}		
+	</select>
+	
+	<insert id="insertUploadFile" parameterType="Business">
+	<selectKey keyProperty="item_f_no" order="BEFORE" resultType="java.lang.String">
+	SELECT ITEM_F_NO.NEXTVAL FROM DUAL
+	</selectKey>	
+	INSERT INTO TEMP_FILE(
+		ITEM_F_NO
+		,IMG_NAME
+		,IMG_PATH
+		)
+		VALUES(
+		#{item_f_no}
+		,#{img_name}
+		,#{img_path}
+		) 
+		
+	</insert>
+
+</mapper>

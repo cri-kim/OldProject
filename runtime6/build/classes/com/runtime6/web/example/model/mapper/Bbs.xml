@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<mapper namespace="com.runtime6.web.example.model.mapper.Bbs">
+
+	<sql id="selectPostSql">
+		        B.b_id AS b_id
+			  ,B.title As title
+			  ,B.cont As content
+			  ,C.name As name
+			  ,C.cid As userId
+			  ,B.write_date As updDttm
+			  ,A.fid As fid
+			  ,A.filename As filename
+			  ,A.filepath As filepath
+	</sql>
+	
+	<sql id="fromPostSql">
+		 from bbs B inner join users C on B.u_id = C.cid
+		 left outer join addfile A on A.fid=B.f_id
+	</sql>
+
+	<select id="getCountPostList" parameterType="PostParam" resultType="int">
+			SELECT COUNT(*) AS totRowCnt
+		    <include refid="com.runtime6.web.example.model.mapper.Bbs.fromPostSql"/>
+	</select>
+
+	<select id="getPostList" parameterType="PostParam" resultType="Post">
+		SELECT T.*
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY TO_NUMBER(b_id) DESC) AS RNUM,
+		        <include refid="com.runtime6.web.example.model.mapper.Bbs.selectPostSql"/>
+		        <include refid="com.runtime6.web.example.model.mapper.Bbs.fromPostSql"/>
+				<where>
+					<if test="searchCondition != null">
+						<foreach collection="searchCondition" item="condition" separator="OR">
+							<choose>
+								<when test="condition == &quot;title&quot;" >
+									B.TITLE LIKE '%' || #{searchText} || '%'
+								</when>
+								<when test="condition == &quot;content&quot;" >
+									B.CONT LIKE '%' || #{searchText} || '%' 
+								</when>
+								<when test="condition == &quot;name&quot;" >
+									C.NAME = #{searchText}
+								</when>
+							</choose>
+						</foreach>
+					</if>
+				</where>) T
+		 WHERE T.RNUM <![CDATA[>=]]> #{fromRowNum} AND T.RNUM <![CDATA[<=]]> #{toRowNum}
+	</select>
+	
+	<select id="getPost" parameterType="PostParam" resultType="Post">
+		SELECT <include refid="com.runtime6.web.example.model.mapper.Bbs.selectPostSql"/>
+		       <include refid="com.runtime6.web.example.model.mapper.Bbs.fromPostSql"/>
+		WHERE B.b_id = #{b_id}
+	</select>
+
+	<delete id="deletePost" parameterType="PostParam">
+		DELETE FROM BBS where b_id = #{b_id}
+	</delete>
+	<update id="updatePost" parameterType="PostParam">
+		UPDATE BBS SET
+		title =	#{title}
+		, cont = #{content}
+		, u_id = #{updId}
+		, u_id_dttm = sysdate
+		WHERE b_id = #{b_id}
+	</update>
+	<insert id="insertPost" parameterType="Post">
+		INSERT INTO BBS
+		(
+		B_ID
+		,TITLE
+		,CONT
+		,U_ID
+		,F_ID
+		,U_ID_DTTM
+		)
+		VALUES
+		(
+		BID.NEXTVAL
+		,#{title}
+		,#{content}
+		,#{userId}
+		,#{fid, jdbcType=NUMERIC}
+		,SYSDATE
+		)
+	</insert>
+	<insert id="insertAttachFile" parameterType="Post">
+<!-- insert를 하기전에 쿼리를 수행하고 그결과를 resultType으로 keyproperty에 저장해라 -->
+	<selectKey keyProperty="fid" order="BEFORE" resultType="java.lang.String">
+	SELECT FID.NEXTVAL FROM DUAL
+	</selectKey>
+		INSERT INTO ADDFILE
+		(
+		FID
+		,FILENAME
+		,FILEPATH
+		)
+		VALUES
+		(
+		#{fid}
+		,#{filename}
+		,#{filepath}
+		)
+	</insert>
+
+</mapper>    

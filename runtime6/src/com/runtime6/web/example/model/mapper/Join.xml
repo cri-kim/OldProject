@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<mapper namespace="com.runtime6.web.example.model.mapper.Join">
+	
+	<select id="checkCid" parameterType="JoinParam" resultType="int" >
+	SELECT COUNT(*) 
+	FROM USERS 
+	WHERE CID = #{cid} 
+	</select>
+	
+
+	<select id="checkWorkNo" parameterType="JoinParam" resultType="int">
+	    SELECT COUNT(mf_code)
+	      FROM manufacturers mf
+	     WHERE mf.work_no = #{workNo}
+	</select>
+	
+
+
+	<insert id="createUser" parameterType= "JoinParam">
+		INSERT INTO USERS
+		( CID
+		,PASSWD
+		,NAME
+		,CELL_PHONE
+		,EMAIL
+		,ADDRESS
+		,BIRTH
+		,SEX
+		,IDTR
+		) 
+		VALUES
+		( #{cid}
+		,#{passwd}
+		,#{name}
+		,#{cellPhone}
+		,#{email}
+		,#{address}
+		,#{birth}
+		,#{sex}
+		,#{idtr}
+		)
+	
+	</insert>
+	
+	<insert id="createProvider" parameterType= "JoinParam">
+		INSERT INTO USERS
+		( CID
+		,PASSWD
+		,NAME
+		,CELL_PHONE
+		,EMAIL
+		,ADDRESS
+		,BANK_NAME
+		,BANK_NUM
+		,IDTR
+		,BUSS_NUM
+		,F_NO
+		) 
+		VALUES
+		( #{cid}
+		,#{passwd}
+		,#{name}
+		,#{cellPhone}
+		,#{email}
+		,#{address}
+		,#{bank_name}
+		,#{bank_num}
+		,#{idtr}
+		,#{buss_num}
+		,#{f_no, jdbcType=NUMERIC}
+		)
+	
+	</insert>
+	
+
+	<insert id="createBussFile" parameterType="Join">
+	<selectKey keyProperty="f_no" order="BEFORE" resultType="java.lang.String">
+	SELECT BUSS_FID.NEXTVAL FROM DUAL
+	</selectKey>
+		INSERT INTO BUSS_FILE
+		(
+		F_NO
+		,IMG_NAME
+		,IMG_PATH
+		,U_DTTM
+		)
+		VALUES
+		(
+		#{f_no}
+		,#{img_name}
+		,#{img_path}
+		,SYSDATE
+		)
+	</insert>
+
+	
+	<insert id="createUserAuthority" parameterType="JoinParam">
+		INSERT INTO AUTHORITIES 
+		( 
+		USERNAME 
+		,Authority 
+		) 
+		VALUES 
+		( 
+		#{cid}
+		,#{role}
+		) 
+	</insert>
+	
+</mapper>
